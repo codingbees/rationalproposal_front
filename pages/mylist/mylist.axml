@@ -1,0 +1,113 @@
+<view style="padding: 24rp;"  >
+  <tabs
+    tabs="{{tabs}}"
+    tabsName="activeTab"
+    onTabClick="handleTabClick"
+    onChange="handleTabChange"
+    onPlusClick="handlePlusClick"
+    activeTab="{{activeTab}}"
+    showPlus="{{hasPlus}}"
+    swipeable="{{false}}"
+    capsule="{{typeCapsule}}"
+    tabBarUnderlineWidth="10px"
+  >   
+    <block a:for="{{tabs}}" a:if="{{true}}">
+      <tab-content  key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:if="{{index === 0}}" >
+  <!-- <view class="table" >
+    <view class="tr bg-w">
+      <view class="th1" >序号</view>
+      <view class="th2">发起人</view>
+      <view class="th34 ">发起时间</view>
+      <view class="th34 ">类型</view>
+      <view class="th5 ">状态</view>
+    </view>
+    <block a:for="{{item.data}}" >
+      <list-item   index="{{item.rp_no}}" onClick="onListItemClick">
+      <view class="tr bg-g" a:if="{{item.is_checked===0}}" >
+        <view class="td1">{{index+1}}</view>
+        <view class="td2">{{item.find_username}}</view>
+        <view class="td34">{{item.create_time}}</view>
+        <view class="td34">{{item.improve_type}}发起类型长度超标</view>
+       <view class="td5">已发起，待审核</view>
+      </view>
+      <view class="tr" a:elif="{{item.is_checked===1 && item.audit_result ===0}}">
+        <view class="td1">{{index+1}}</view>
+        <view class="td2">{{item.find_username}}</view>
+        <view class="td34">{{item.create_time}}</view>
+        <view class="td34">{{item.improve_type}}</view>
+        <view class="td5">已拒绝</view>
+      </view>
+      <view class="tr" a:elif="{{item.is_checked===1 && item.audit_result ===1 && item.handle_result ===0}}">
+        <view class="td1">{{index+1}}</view>
+        <view class="td2">{{item.find_username}}</view>
+        <view class="td34">{{item.create_time}}</view>
+        <view class="td34">{{item.improve_type}}</view>
+        <view class="td5">已审核通过，待处理, {{item.scores}}分</view>
+      </view>
+      <view class="tr" a:else>
+        <view class="td1">{{index+1}}</view>
+        <view class="td2">{{item.find_username}}</view>
+        <view class="td34">{{item.create_time}}</view>
+        <view class="td34">{{item.improve_type}}发起类型长度超标</view>
+        <view class="td5">已处理完成, {{item.scores}}分</view>
+      </view>
+      </list-item>
+    </block>
+  </view> -->
+        <block a:for="{{item.data}}"   >
+        <list-item class=""   index="{{item.rp_no}}" onClick="onListItemClick">
+          <view class="tab-t" a:if="{{item.is_checked===0}}"   >
+              {{index+1}}.{{item.find_username}}在{{item.create_time}}发起了类型为“{{item.improve_type}}”的建议，当前状态：已发起，待审核
+          </view>
+        
+          <view class="tab-t" a:elif="{{item.is_checked===1 && item.audit_result ===0}}"  >
+              {{index+1}}.{{item.find_username}}在{{item.create_time}}发起了类型为“{{item.improve_type}}”的建议，当前状态：已拒绝
+          </view>
+          <view class="tab-t" a:elif="{{item.is_checked===1 && item.audit_result ===1 && item.handle_result ===0}}"  >
+              {{index+1}}.{{item.find_username}}在{{item.create_time}}发起了类型为“{{item.improve_type}}”的建议，当前状态：已审核通过，待处理, 分值{{item.scores}}分
+          </view>
+          <view class="tab-t" a:else  >
+              {{index+1}}.{{item.find_username}}在{{item.create_time}}发起了类型为“{{item.improve_type}}”的建议，当前状态：已处理完成, 分值{{item.scores}}分
+          </view>
+          </list-item>
+        </block>
+      </tab-content>
+      <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:elif="{{index === 1}}" >
+        <block a:for="{{item.data}}">
+        <list-item    index="{{item.rp_no}}" onClick="onListItemClick">
+          <view class="tab-t" a:if="{{item.is_checked===0}}"  >
+              {{index+1}}.{{item.find_username}}在{{item.create_time}}发起了类型为“{{item.improve_type}}”的建议，当前状态：已发起，待审核
+          </view>
+          </list-item>
+        </block>
+      </tab-content>
+      <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:elif="{{index === 2}}">
+        <block a:for="{{item.data}}" >
+        <list-item  index="{{item.rp_no}}" onClick="onListItemClick">
+          <view class="tab-t" a:if="{{item.is_checked===1 && item.audit_result ===1 && item.handle_result ===0}}"  >
+              {{index+1}}.{{item.find_username}}在{{item.create_time}}发起了类型为“{{item.improve_type}}”的建议，当前状态：已审核通过，待处理待处理, 分值{{item.scores}}分
+          </view>
+          </list-item>
+        </block>
+      </tab-content>
+      <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:elif="{{index === 3}}">
+        <block a:for="{{item.data}}">
+        <list-item  index="{{item.rp_no}}" onClick="onListItemClick">
+        <view class="tab-t" a:if="{{item.is_checked===1 && item.audit_result ===0}}"  >
+              {{index+1}}.{{item.find_username}}在{{item.create_time}}发起了类型为“{{item.improve_type}}”的建议，当前状态：已拒绝
+          </view>
+          </list-item>
+        </block>
+      </tab-content>
+      <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:elif="{{index === 4}}"  >
+        <block a:for="{{item.data}}"  >
+        <list-item  index="{{item.rp_no}}" onClick="onListItemClick">
+          <view  class="tab-t" a:if="{{item.is_checked===1 && item.audit_result ===1 && item.handle_result ===1}}"  >
+              {{index+1}}.{{item.find_username}}在{{item.create_time}}发起了类型为“{{item.improve_type}}”的建议，当前状态：已处理完成, 分值{{item.scores}}分
+          </view>
+          </list-item>
+        </block>
+      </tab-content>
+    </block>
+  </tabs>
+</view>

@@ -1,0 +1,7 @@
+.main{
+  margin: 10rpx;
+}
+.row{
+    height: 60rpx;
+    line-height: 60rpx;
+}

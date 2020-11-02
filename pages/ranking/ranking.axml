@@ -1,0 +1,58 @@
+<view style="padding: 24rpx;"  >
+<form onSubmit="onSubmit" >
+  <view class="row" >
+        <view class="row-title">
+          <button type="default" size="mini" onTap="selectMonth" plain>选择月份</button></view>
+        <view class="form-row-content">
+          <input name="selectedMonth" class="input" disabled="true"  onConfirm="changeMonth" value="{{currentMonth}}" placeholder="请选择"/>
+        </view>
+        <view>
+          <button type="primary" size="mini" formType="submit">查询</button>
+        </view>
+      </view>
+
+</form>
+  <tabs
+    tabs="{{tabs}}"
+    tabsName="activeTab"
+    onTabClick="handleTabClick"
+    onChange="handleTabChange"
+    onPlusClick="handlePlusClick"
+    activeTab="{{activeTab}}"
+    showPlus="{{hasPlus}}"
+    swipeable="{{false}}"
+    capsule="{{typeCapsule}}"
+    hasSubTitle="{{typeHasSubTitle}}"
+    tabBarUnderlineWidth="20px"
+  >
+    <block a:for="{{tabs}}" >
+      <tab-content  key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:if="{{index === 0}}" >
+        <block a:for="{{item.RankingList}}"   >
+        <list-item class=""   index="{{item.index}}" onClick="onListItemClick">
+          <view class="tab-t"    >
+              第{{index+1}}名：{{item.find_username}}，{{item.find_userid}}，{{item.total_items}}条，{{item.total_scores?item.total_scores:0}}分。
+          </view>
+          </list-item>
+        </block>
+      </tab-content>
+      <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:elif="{{index === 1}}" >
+        <block a:for="{{item.RankingList}}">
+         <list-item class=""   index="{{item.index}}" onClick="onListItemClick">
+          <view class="tab-t"    >
+              第{{index+1}}名：{{item.workshop}}，{{item.total_items}}条，{{item.total_scores}}分。
+          </view>
+          </list-item>
+        </block>
+      </tab-content>
+      <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:elif="{{index === 2}}">
+       <block a:for="{{item.RankingList}}">
+         <list-item class=""   index="{{item.index}}" onClick="onListItemClick">
+          <view class="tab-t"    >
+              第{{index+1}}名：{{item.department}}，{{item.total_items}}条，{{item.total_scores}}分。
+          </view>
+          </list-item>
+        </block>
+      </tab-content>
+    </block>
+  </tabs>
+</view>

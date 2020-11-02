@@ -1,0 +1,58 @@
+<view class="page">
+    <card thumb="{{thumb}}"
+      title="{{username}}" 
+      subTitle="{{departments}}" 
+      action="我的积分" 
+      onActionClick="onActionClick" 
+      extraAction="我的兑换记录" 
+      onExtraActionClick="onExtraActionClick" 
+      bgImg="https://gw.alipayobjects.com/mdn/rms_ce4c6f/afts/img/A*OjyRRqjLM6MAAAAAAAAAAABkARQnAQ" 
+      expand="{{expand3rd}}" 
+      onCardClick="toggle" 
+      />
+    <view class="message" a:if="{{showMyMessage}}">
+    <view>
+      姓名：{{username}} 
+    </view>
+    <view>
+      总积分：{{myScores.scores[0].total_scores}}
+    </view>
+    <view>
+      已使用的分数：{{myScores.used_score[0].total}}
+    </view>
+    <view>
+      剩余分数：{{myScores.scores[0].total_scores-myScores.used_score[0].total}}
+    </view>
+    <view>
+      建议总数：{{myScores.scores[0].total_items}}
+    </view>
+    
+    </view>
+   
+
+  <view class="table" a:if="{{showMyExchange}}">
+    <view class="tr bg-w">
+      <view class="th1">序号</view>
+      <view class="th">申请日期</view>
+      <view class="th ">奖品名称</view>
+      <view class="th ">所用积分</view>
+      <view class="th ">申请人</view>
+    </view>
+    <block a:for="{{myExchangeList}}" >
+      <view class="tr bg-g" a:if="{{index % 2 == 0}}">
+        <view class="td1">{{index+1}}</view>
+        <view class="td">{{item.apply_date}}</view>
+        <view class="td">{{item.prize_name}}</view>
+        <view class="td">{{item.score}}</view>
+       <view class="td">{{item.apply_username}}</view>
+      </view>
+      <view class="tr" a:else>
+        <view class="td1">{{index+1}}</view>
+        <view class="td">{{item.apply_date}}</view>
+        <view class="td">{{item.prize_name}}</view>
+        <view class="td">{{item.score}}</view>
+        <view class="td">{{item.apply_username}}</view>
+      </view>
+    </block>
+  </view>
+</view>

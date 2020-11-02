@@ -1,0 +1,94 @@
+<view class="dyt-list" style="position: relative;">
+  
+  <form onSubmit="onSubmit" onReset="onReset" enctype="multipart/form-data">
+    <view class="page-section">
+      <view class="row">
+        <view class="row-title">发起时间 : {{getCheckItem[0].create_time}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">发起人 : {{getCheckItem[0].find_username}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">车间 : {{getCheckItem[0].workshop}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">产线 : {{getCheckItem[0].prodcutionLine}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">问题描述 : {{getCheckItem[0].description}}</view>
+      </view>
+      <view class="form-line" />
+      <view  >
+      <view class="row">
+       <view class="row-title">问题图片 :</view>
+       </view>
+       <view class="row">
+        <view class="page-section-demo" onTap="onTap" a:for="{{img}}" a:for-item="item">
+          <image class="image" onTap="onTap" mode="widthFix" src="{{src}}{{item}}" onError="imageError" onLoad="imageLoad" />
+        </view>
+      </view>
+      </view>
+      <view class="form-line" />
+      <!-- <view class="row">
+      <image class="image" onTap="onTap" mode="widthFix" src="{{src}}{{item.picture_of_problem}}" onError="imageError" onLoad="imageLoad" />
+      </view> -->
+        <!-- <image mode="scaleToFill" src="/img/1.jpg"/>  -->
+      <!-- <view class="row">
+        <view class="row-title">问题图片 : {{getCheckItem[0].picture_of_problem}}</view>
+      </view> -->
+      <view class="row">
+        <view class="row-title">改善建议 : {{getCheckItem[0].proposal}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">改善类型 : {{getCheckItem[0].improve_type}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">审核意见 :</view>
+      </view>
+      <view class="form-line" />
+      <view >
+        <textarea onBlur="bindTextAreaBlur" name="audit_opinion" auto-height placeholder="请输入审核意见（必填）" />
+      </view>
+      <view class="form-line" />
+      <view >
+        <picker onChange="scoreChange" name="scores" value="{{indexScore}}" range="{{scores}}">
+          <view class="row">
+            <view class="row-title">分值：   当前选择：{{scores[indexScore]}}</view>
+          </view>
+        </picker>
+      </view>
+      <view class="form-line" />
+      <!--<view class="page-section"><picker onChange="scoreChange" name="scores" value="{{indexScore}}" range="{{scores}}"><view class="row"><view class="row-title">分值：</view><view class="row-extra">当前选择：{{scores[indexScore]}}分</view></view></picker></view> -->
+      <view >
+        <picker onChange="handlerChange" name="handler_username" value="{{indexHandler}}" range="{{handlers}}">
+          <view class="row">
+            <view class="row-title">处理人：   当前选择：{{handlers[indexHandler]}}</view>
+          </view>
+        </picker>
+      </view>
+      <view class="form-line" />
+      <input name="handler_userid" class="input" style="display:none" value={{handler_userid}} />
+      <view class="row">
+        <view class="row-title">
+          <button type="default" size="mini" onTap="selectDate" plain>预计完成日期</button></view>
+        <view class="form-row-content">
+          <input name="commit_finish_date" class="input" disabled="true" value="{{commitDate}}" placeholder="请选择（必填）"/>
+        </view>
+      </view>
+      <view class="page-section-btns">
+        <view>
+          <button type="default" size="mini" formType="reset">重置</button></view>
+        <view>
+          <button type="warn" size="mini" onTap="reject">拒绝</button></view>
+        <view>
+          <button type="primary" size="mini" formType="submit">同意</button></view>
+      </view>
+    </view>
+  </form>
+</view>

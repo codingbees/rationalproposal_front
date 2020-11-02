@@ -1,0 +1,97 @@
+<view class="dyt-list" style="position: relative;">
+  <form onSubmit="onSubmit" onReset="onReset" enctype="multipart/form-data">
+    <view class="page-section">
+      <view class="row">
+        <view class="row-title">发起时间 : {{getCheckItem[0].create_time}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">发起人 : {{getCheckItem[0].find_username}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">车间 : {{getCheckItem[0].workshop}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">产线 : {{getCheckItem[0].prodcutionLine}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">问题描述 : {{getCheckItem[0].description}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="page-section" >
+      <view class="row">
+       <view class="row-title">问题图片 :</view>
+        </view>
+        <view class="row">
+        <view class="page-section-demo" onTap="onTap" a:for="{{img}}" a:for-item="item">
+          <image class="image" onTap="onTap" mode="widthFix" src="{{src}}{{item}}" onError="imageError" onLoad="imageLoad" />
+        </view>
+      </view>
+      <view class="form-line" />
+      <!-- <view class="row">
+      <image class="image" onTap="onTap" mode="widthFix" src="{{src}}{{item.picture_of_problem}}" onError="imageError" onLoad="imageLoad" />
+      </view> -->
+        <!-- <image mode="scaleToFill" src="/img/1.jpg"/>  -->
+      <!-- <view class="row">
+        <view class="row-title">问题图片 : {{getCheckItem[0].picture_of_problem}}</view>
+      </view> -->
+      <view class="row">
+        <view class="row-title">改善建议 : {{getCheckItem[0].proposal}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">改善类型 : {{getCheckItem[0].improve_type}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">审核意见 : {{getCheckItem[0].audit_opinion}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">分值 : {{getCheckItem[0].scores}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">计划完成日期 : {{getCheckItem[0].commit_finish_date}}</view>
+      </view>
+
+      <view class="form-line" />
+
+      <view class="row">
+        <view class="row-title">
+        <button type="default" size="mini" onTap="selectFile" plain style="padding:0px; margin:0px">改善后图片</button>
+        </view>
+        <view class="form-row-content">
+          <input type="file" multiple="multiple" name="picture_after_improve" class="input" disabled="true" value="已选择： {{fileqty}}张图片" />
+        </view>
+      </view>
+
+      <view class="form-line" />
+
+      <view class="row">
+        <view class="row-title">
+          <button type="default" size="mini" onTap="selectDate" plain style="padding:0px; margin:0px">实际完成日期</button></view>
+        <view class="form-row-content">
+          <input name="actural_finish_date" class="input" disabled="true" value="{{acturalFinishDate}}" placeholder="请选择（必填）"/>
+        </view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">改善完成情况描述 :</view>
+      </view>
+      <view >
+        <textarea style="margin: 20rpx;" onBlur="bindTextAreaBlur" name="description_after_improve" auto-height placeholder="请输入(必填)" />
+      </view>
+
+      <view class="page-section-btns">
+        <view>
+          <button type="default" size="mini" formType="reset">重置</button></view>
+        <view>
+          <button type="primary" size="mini" formType="submit">提交</button></view>
+      </view>
+    </view>
+  </form>
+</view>

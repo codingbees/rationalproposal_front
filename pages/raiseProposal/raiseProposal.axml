@@ -1,0 +1,80 @@
+<view class="page">
+  <form onSubmit="onSubmit" onReset="onReset" enctype="multipart/form-data">
+    <input name="find_userid" class="input" style="display:none" value={{userid}} />
+    <input name="find_user_part_id" class="input" style="display:none" value={{partid}} />
+    <input name="find_user_part_name" class="input" style="display:none" value={{partname}} />
+    <input name="find_username" class="input" style="display:none" value={{username}} />
+    <input name="is_checked" class="input" style="display:none" value=0 />
+    <input name="auditor_userid" class="input" style="display:none" value="" />
+    <view class="page-section">
+      <picker onChange="depChange" name="department" value="{{indexDep}}" range="{{arrayDep}}">
+        <view class="row">
+          <view class="row-title">问题所在事业部：</view>
+          <view class="row-extra">当前选择：{{arrayDep[indexDep]}}</view>
+        </view>
+      </picker>
+    </view>
+    <view class="page-section">
+      <picker onChange="workshopChange" name="workshop" value="{{index}}" range="{{array}}">
+        <view class="row">
+          <view class="row-title">问题所在车间：</view>
+          <view class="row-extra">当前选择：{{array[index]}}</view>
+        </view>
+      </picker>
+    </view>
+    <view class="page-section">
+      <picker onChange="lineChange" name="prodcutionLine" value="{{indexLine}}" range="{{arrayLine}}">
+        <view class="row">
+          <view class="row-title">问题所在产线：</view>
+          <view class="row-extra">当前选择：{{arrayLine[indexLine]}}</view>
+        </view>
+      </picker>
+    </view>
+      <view class="page-section">
+      <view class="page-section-title" style="font-size:34rpx">问题描述：</view>
+      <view class="page-section-demo">
+        <textarea onBlur="bindTextAreaBlur" name="description" auto-height placeholder="请输入问题描述" />
+      </view>
+    </view>
+       <view class="form-line" />
+      <view class="form-row">
+        <view class="form-row-label"><button type="default" size="mini" onTap="selectFile" plain>问题图片</button></view>
+        <view class="form-row-content">
+          <input type="file" multiple="multiple" name="picture_of_problem" class="input" disabled="true" value="已选择： {{fileqty}}张图片" />
+        </view>
+      </view>
+      <view class="form-line" />
+     <view class="page-section">
+      <view class="page-section-title" style="font-size:34rpx">改善建议：</view>
+      <view class="page-section-demo">
+        <textarea onBlur="bindTextAreaBlur" name="proposal" auto-height placeholder="请输入改善建议" />
+      </view>
+    </view>
+    <view class="form-line" />
+    <view class="page-section">
+      <picker onChange="typeChange" name="improve_type" value="{{indexType}}" range="{{arrayType}}">
+        <view class="row">
+          <view class="row-title">改善类型：</view>
+          <view class="row-extra">当前选择：{{arrayType[indexType]}}</view>
+        </view>
+      </picker>
+    </view>
+     <view class="form-line" />
+    <view class="page-section">
+      <picker onChange="auditorChange" name="auditor_username" value="{{indexCheck}}" range="{{arrayCheck}}">
+        <view class="row">
+          <view class="row-title">审核人：</view>
+          <view class="row-extra">当前选择：{{arrayCheck[indexCheck]}}</view>
+        </view>
+      </picker>
+    </view>
+ <view class="form-line" />
+      <view class="page-section-btns">
+        <view><button type="ghost" size="mini" formType="reset">重置</button></view>
+        <view><button type="primary" size="mini" formType="submit">提交问题</button></view>
+      </view>
+    </view>
+    
+  </form>
+  
+</view>

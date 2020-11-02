@@ -1,0 +1,40 @@
+.prize{
+  /* background-color: black; */
+  /* width: 750rpx; */
+}
+
+.prizelist{
+  display: flex;
+  flex-wrap: wrap;
+  /* width: 750rpx; */
+  /* flex-wrap: wrap; */
+  padding: 0 15rpx;
+  background-color: #eee;
+  justify-content: space-between;
+}
+
+.prizeitem{
+  display: inline-block;
+  width: 300rpx;
+  height: 450rpx;
+  background-color: white;
+  margin-bottom: 10rpx;
+  padding: 0 20rpx;
+}
+
+.prizeitem image{
+  width: 100%;
+  height: 350rpx;
+
+}
+
+.text1{
+  padding: 20rpx 0rpx;
+  font-size: 32rpx;
+  color: rgb(65, 65, 175);
+}
+.text2{
+  display: inline-block;
+  padding: 10rpx;
+  font-size: 30rpx;
+}

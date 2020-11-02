@@ -1,0 +1,51 @@
+<view class="prize">
+
+  <!-- <list> -->
+  <!-- <view  class="prize"  >
+    <list-item onClick="toExchange" a:for={{prize}}  index="{{item.id}}  ">
+  <view class="prizelist" >
+  <view class="prizeitem"  >
+  <view>
+  <image class="prizeimg"   src="http://192.168.18.126:18080/prize_pictures/{{item.prize_pic_name}}"/>
+  </view>
+    <view >
+      <text class="text1">{{index+1}}.{{item.prize_name_cn}}</text>
+      </view>
+      <view >
+      <text class="text2" >所需积分：{{item.cost_score}}</text>
+    </view>
+  </view>
+  </view>
+  </list-item>
+  </view> -->
+  
+<view  class="prizelist"  >
+    
+  <!-- <view class="prizelist" > -->
+  <view class="prizeitem" onTap="toExchange" a:for={{prize}}  index="{{item.id}}"  data-attr="{{item.id}}" >
+  <view>
+  <image class="prizeimg"   src="http://110.186.68.166:18901/prize_pictures/{{item.prize_pic_name}}"/>
+  </view>
+    <view >
+      <text class="text1">{{index+1}}.{{item.prize_name_cn}}</text>
+      </view>
+      <view >
+      <text class="text2" >所需积分：{{item.cost_score}}</text>
+    </view>
+  
+  </view>
+  
+  </view>
+
+   <modal
+		show="{{modalOpened5}}"
+    showClose="{{false}}"
+    onButtonClick="onButtonClick5"
+    buttons="{{buttons5}}"
+	>
+		<view slot="header">兑换奖品</view>
+		<view >您确定要使用"{{selectScore}}"分,</view>
+    <view >来兑换一份"{{selectPrize}}"吗？</view>
+    
+	</modal>
+</view>

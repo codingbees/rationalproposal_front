@@ -1,0 +1,70 @@
+.dyt-list {
+  margin-top: 0;
+}
+.dyt-list .am-list-item-thumb {
+  border-radius: 5px;
+}
+.dyt-list .am-list-briefX {
+  color: #909090;
+  font-size: 14px;
+}
+.am-list-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.am-list-item .a-icon-success_no_circle {
+  fill: #1677ff;
+}
+.am-list-item .a-shared-checkbox {
+  border: 0;
+}
+.row {
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx;
+}
+
+.row-title {
+  flex: 1;
+  padding-top: 5rpx;
+  padding-bottom: 5rpx;
+  font-size: 18rpx;
+  color: #000;
+}
+
+
+
+.tab-t{
+  display: flex;
+  /* padding: 12rpx; */
+  flex-wrap : wrap;
+  white-space:pre-wrap;
+  font-size: 30rpx !important;
+}
+/* 
+.tab-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40rpx;
+  box-sizing: border-box;
+  
+}
+.radio-group {
+  padding: 30rpx 40rpx 0;
+}
+.radio {
+  margin-right: 10px;
+}
+.demo-title {
+  margin: 30rpx 40rpx 0;
+  padding-bottom: 10px;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+.message{
+  font-size: 14px;
+  margin-left: 36rpx;
+  line-height: 28px
+} */

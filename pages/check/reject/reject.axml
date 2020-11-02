@@ -1,0 +1,16 @@
+<view class="dyt-list" style="position: relative;">
+  <form onSubmit="onSubmit" onReset="onReset" enctype="multipart/form-data">
+    <view class="row">
+      <view class="row-title">拒绝理由 :</view>
+    </view>
+    <view class="page-section-demo">
+      <textarea onBlur="bindTextAreaBlur" name="audit_opinion" auto-height placeholder="请输入（必填）" />
+    </view>
+    <view class="page-section-btns">
+        <view>
+          <button type="default" size="mini" formType="reset">重置</button></view>
+        <view>
+          <button type="primary" size="mini" formType="submit">确定</button></view>
+      </view>
+  </form>
+</view>

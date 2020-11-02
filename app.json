@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/mine/mine",
+    "pages/raiseProposal/raiseProposal",
+    "pages/check/check",
+    "pages/check/toBeChecked/toBeChecked",
+    "pages/check/reject/reject",
+    "pages/handle/handle",
+    "pages/handle/toBeHandled/toBeHandled",
+    "pages/ranking/ranking",
+    "pages/scores/scores",
+    "pages/mylist/mylist",
+    "pages/mylist/mylistitems/mylistitems"
+  ],
+  "window": {
+    "defaultTitle": "合理化建议"
+  },
+  "tabBar": {
+    "textColor": "#dddddd",
+    "selectedColor": "#49a9ee",
+    "backgroundColor": "#ffffff",
+    "items": [
+      {
+        "pagePath": "pages/index/index",
+        "name": "首页",
+        "icon": "./img/home.png",
+        "activeIcon": "./img/home_a.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "name": "我的",
+        "icon": "./img/mine.png",
+        "activeIcon": "./img/mine_a.png"
+      }
+    ]
+  }
+}

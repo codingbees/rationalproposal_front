@@ -1,0 +1,26 @@
+<view>
+<scroll-view style="height: 100vh;" 
+		scroll-y onScrollToLower="onScrollToLower" 
+		enable-back-to-top="true">
+	<!-- <scroll-view style="height: 100vh;" 
+		scroll-y onScrollToLower="onScrollToLower" 
+		enable-back-to-top="true"> -->
+		<list>
+			<block a:for="{{listToBeChecked}}">
+				<list-item 
+					onClick="onItemClick" 
+					index="{{item.rp_no}}" 
+					last="{{index === (itemsThumbMultiple.length - 1)}}" 
+					key="items-multiple-{{index}}" 
+					upperSubtitle="发起日期：{{item.create_time}}" 
+					multipleLineX="{{true}}">
+					{{index+1}}.{{item.find_username}}发起的合理化建议，待审核
+				</list-item>
+			</block>
+		</list>
+		<view class="listempty" a:if="{{getCheckListIsEmpty}}">
+					无待审核建议
+			</view>
+    </scroll-view>
+	<!-- </scroll-view> -->
+</view>
