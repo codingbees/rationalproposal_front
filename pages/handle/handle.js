@@ -53,9 +53,9 @@ Page({
   },
   onItemClick(ev) {
     console.log("ev is:")
-    console.log(ev.index);
+    console.log(ev.currentTarget.dataset.rpno);
     dd.navigateTo({
-      url: '/pages/handle/toBeHandled/toBeHandled?no='+ev.index
+      url: '/pages/handle/toBeHandled/toBeHandled?no='+ev.currentTarget.dataset.rpno
     })
   },
   

@@ -27,7 +27,7 @@
         </view>
         <view class="row">
         <view class="page-section-demo" onTap="onTap" a:for="{{img}}" a:for-item="item">
-          <image class="image" onTap="onTap" mode="widthFix" src="{{src}}{{item}}" onError="imageError" onLoad="imageLoad" />
+          <image class="image" onTap="previewImage" data-img="{{item}}" onTap="onTap" mode="widthFix" src="{{src}}{{item}}" onError="imageError" onLoad="imageLoad" />
         </view>
       </view>
       <view class="form-line" />

@@ -10,7 +10,7 @@
       <picker onChange="depChange" name="department" value="{{indexDep}}" range="{{arrayDep}}">
         <view class="row">
           <view class="row-title">问题所在事业部：</view>
-          <view class="row-extra">当前选择：{{arrayDep[indexDep]}}</view>
+          <view class="row-extra">{{arrayDep[indexDep]}}</view>
         </view>
       </picker>
     </view>
@@ -18,7 +18,7 @@
       <picker onChange="workshopChange" name="workshop" value="{{index}}" range="{{array}}">
         <view class="row">
           <view class="row-title">问题所在车间：</view>
-          <view class="row-extra">当前选择：{{array[index]}}</view>
+          <view class="row-extra">{{array[index]}}</view>
         </view>
       </picker>
     </view>
@@ -26,28 +26,40 @@
       <picker onChange="lineChange" name="prodcutionLine" value="{{indexLine}}" range="{{arrayLine}}">
         <view class="row">
           <view class="row-title">问题所在产线：</view>
-          <view class="row-extra">当前选择：{{arrayLine[indexLine]}}</view>
+          <view class="row-extra">{{arrayLine[indexLine]}}</view>
         </view>
       </picker>
     </view>
       <view class="page-section">
-      <view class="page-section-title" style="font-size:34rpx">问题描述：</view>
+      <view class="page-section-title" >问题描述：</view>
       <view class="page-section-demo">
-        <textarea onBlur="bindTextAreaBlur" name="description" auto-height placeholder="请输入问题描述" />
+        <textarea maxlength="500" onBlur="bindTextAreaBlur" name="description" auto-height placeholder="请输入问题描述" />
       </view>
     </view>
        <view class="form-line" />
+       <view class="page-section uploadPicArea"> 
       <view class="form-row">
         <view class="form-row-label"><button type="default" size="mini" onTap="selectFile" plain>问题图片</button></view>
         <view class="form-row-content">
-          <input type="file" multiple="multiple" name="picture_of_problem" class="input" disabled="true" value="已选择： {{fileqty}}张图片" />
+          <input type="file" multiple="multiple" name="picture_of_problem" class="input" disabled="true" value="已选择：{{fileqty}}张" />
+       </view>
+        </view>
+        <view a:for="{{picNames}}">1231
+          <!-- <image mode="scaleToFill" src="http://192.168.18.126:18080/prize_pictures/1.jpg" class="pics"/>
+           <image mode="scaleToFill" src="http://192.168.18.126:18080/prize_pictures/2.jpg" class="pics"/>
+           <image mode="scaleToFill" src="http://192.168.18.126:18080/prize_pictures/3.jpg" class="pics"/>
+           <image mode="scaleToFill" src="../../../../D:\apache-tomcat-8.0.26\webapps\rationalproposal\11.jpg" class="pics"/>
+           <image mode="scaleToFill" src="../../../../D:\apache-tomcat-8.0.26\webapps\rationalproposal\12.jpg" class="pics"/>
+           <image mode="scaleToFill" src="../../../../D:\apache-tomcat-8.0.26\webapps\rationalproposal\13.jpg" class="pics"/>
+           <image mode="scaleToFill" src="../../../../D:\apache-tomcat-8.0.26\webapps\rationalproposal\14.jpg" class="pics"/> -->
+           <image mode="scaleToFill" src="{{imgspath}}{{item}}" class="pics"/>
         </view>
       </view>
       <view class="form-line" />
      <view class="page-section">
-      <view class="page-section-title" style="font-size:34rpx">改善建议：</view>
+      <view class="page-section-title" >改善建议：</view>
       <view class="page-section-demo">
-        <textarea onBlur="bindTextAreaBlur" name="proposal" auto-height placeholder="请输入改善建议" />
+        <textarea maxlength="500" onBlur="bindTextAreaBlur" name="proposal" auto-height placeholder="请输入改善建议" />
       </view>
     </view>
     <view class="form-line" />
@@ -55,7 +67,7 @@
       <picker onChange="typeChange" name="improve_type" value="{{indexType}}" range="{{arrayType}}">
         <view class="row">
           <view class="row-title">改善类型：</view>
-          <view class="row-extra">当前选择：{{arrayType[indexType]}}</view>
+          <view class="row-extra">{{arrayType[indexType]}}</view>
         </view>
       </picker>
     </view>
@@ -64,11 +76,10 @@
       <picker onChange="auditorChange" name="auditor_username" value="{{indexCheck}}" range="{{arrayCheck}}">
         <view class="row">
           <view class="row-title">审核人：</view>
-          <view class="row-extra">当前选择：{{arrayCheck[indexCheck]}}</view>
+          <view class="row-extra">{{arrayCheck[indexCheck]}}</view>
         </view>
       </picker>
     </view>
- <view class="form-line" />
       <view class="page-section-btns">
         <view><button type="ghost" size="mini" formType="reset">重置</button></view>
         <view><button type="primary" size="mini" formType="submit">提交问题</button></view>

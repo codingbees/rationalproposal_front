@@ -1,57 +1,109 @@
-<view style="padding: 24rpx;"  >
-<form onSubmit="onSubmit" >
-  <view class="row" >
-        <view class="row-title">
-          <button type="default" size="mini" onTap="selectMonth" plain>选择月份</button></view>
-        <view class="form-row-content">
-          <input name="selectedMonth" class="input" disabled="true"  onConfirm="changeMonth" value="{{currentMonth}}" placeholder="请选择"/>
-        </view>
-        <view>
-          <button type="primary" size="mini" formType="submit">查询</button>
-        </view>
+<view style="padding: 24rpx; height:4000rpx;display：inline">
+  <form onSubmit="onSubmit">
+    <view class="row">
+      <view class="row-title">
+        <button type="default" size="mini" onTap="selectMonth" plain>选择月份</button></view>
+      <view class="form-row-content">
+        <input name="selectedMonth" class="input" disabled="true" onConfirm="changeMonth" value="{{currentMonth}}" placeholder="请选择"/>
       </view>
-
-</form>
-  <tabs
-    tabs="{{tabs}}"
-    tabsName="activeTab"
-    onTabClick="handleTabClick"
-    onChange="handleTabChange"
-    onPlusClick="handlePlusClick"
-    activeTab="{{activeTab}}"
-    showPlus="{{hasPlus}}"
-    swipeable="{{false}}"
-    capsule="{{typeCapsule}}"
-    hasSubTitle="{{typeHasSubTitle}}"
-    tabBarUnderlineWidth="20px"
-  >
-    <block a:for="{{tabs}}" >
-      <tab-content  key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:if="{{index === 0}}" >
-        <block a:for="{{item.RankingList}}"   >
-        <list-item class=""   index="{{item.index}}" onClick="onListItemClick">
-          <view class="tab-t"    >
-              第{{index+1}}名：{{item.find_username}}，{{item.find_userid}}，{{item.total_items}}条，{{item.total_scores?item.total_scores:0}}分。
-          </view>
-          </list-item>
-        </block>
+      <view>
+        <button type="primary" size="mini" formType="submit">查询</button>
+      </view>
+    </view>
+  </form>
+  <tabs tabs="{{tabs}}" tabsName="activeTab" onTabClick="handleTabClick" onChange="handleTabChange" onPlusClick="handlePlusClick" activeTab="{{activeTab}}" showPlus="{{hasPlus}}" swipeable="{{false}}" capsule="{{typeCapsule}}" hasSubTitle="{{typeHasSubTitle}}" tabBarUnderlineWidth="20px">
+    <block a:for="{{tabs}}">
+      <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:if="{{index === 0}}">
+        <!--<block a:for="{{item.RankingList}}"><list-item class="" index="{{item.index}}" onClick="onListItemClick"><view class="tab-t">
+              第{{index+1}}名：{{item.find_username}}，{{item.find_userid}}，{{item.total_items}}条，{{item.total_scores?item.total_scores:0}}分。</view></list-item></block> -->
+        <!--<view class="table"> -->
+        <view class="tr bg-w ">
+          <view class="th1">排名</view>
+          <view class="th">发起人</view>
+          <view class="th ">部门</view>
+          <view class="th ">建议条数</view>
+          <view class="th ">总分</view>
+        </view>
+        <view class="tablerow">
+          <block a:for="{{item.RankingList}}" a:for-item="i">
+            <view onTap="onListItemClick" class="tr bg-g" a:if="{{index % 2 == 0}}" data-rpno="{{i.rp_no}}">
+              <view class="td1">{{index+1}}</view>
+              <view class="td">{{i.find_username}}</view>
+              <view class="td">{{i.find_user_part_name}}</view>
+              <view class="td">{{i.total_items}}</view>
+              <view class="td">{{i.total_scores}}</view>
+            </view>
+            <view onTap="onListItemClick" class="tr" a:else data-rpno="{{i.rp_no}}">
+              <view class="td1">{{index+1}}</view>
+              <view class="td">{{i.find_username}}</view>
+              <view class="td">{{i.find_user_part_name}}</view>
+              <view class="td">{{i.total_items}}</view>
+              <view class="td">{{i.total_scores?i.total_scores:0}}</view>
+            </view>
+          </block>
+        </view>
       </tab-content>
-      <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:elif="{{index === 1}}" >
-        <block a:for="{{item.RankingList}}">
-         <list-item class=""   index="{{item.index}}" onClick="onListItemClick">
-          <view class="tab-t"    >
+      <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:elif="{{index === 1}}">
+        <!-- <block a:for="{{item.RankingList}}">
+          <list-item class="" index="{{item.index}}" onClick="onListItemClick">
+            <view class="tab-t">
               第{{index+1}}名：{{item.workshop}}，{{item.total_items}}条，{{item.total_scores}}分。
-          </view>
+            </view>
           </list-item>
-        </block>
+        </block> -->
+        <view class="tr bg-w ">
+          <view class="th1">排名</view>
+          <view class="th">车间</view>
+          <view class="th ">建议条数</view>
+          <view class="th ">总分</view>
+        </view>
+        <view class="tablerow">
+          <block a:for="{{item.RankingList}}" a:for-item="i">
+            <view onTap="onListItemClick" class="tr bg-g" a:if="{{index % 2 == 0}}" data-rpno="{{i.rp_no}}">
+              <view class="td1">{{index+1}}</view>
+              <view class="td">{{i.workshop}}</view>
+              <view class="td">{{i.total_items}}</view>
+              <view class="td">{{i.total_scores}}</view>
+            </view>
+            <view onTap="onListItemClick" class="tr" a:else data-rpno="{{i.rp_no}}">
+              <view class="td1">{{index+1}}</view>
+              <view class="td">{{i.workshop}}</view>
+              <view class="td">{{i.total_items}}</view>
+              <view class="td">{{i.total_scores}}</view>
+            </view>
+          </block>
+        </view>
       </tab-content>
       <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:elif="{{index === 2}}">
-       <block a:for="{{item.RankingList}}">
-         <list-item class=""   index="{{item.index}}" onClick="onListItemClick">
-          <view class="tab-t"    >
+        <!-- <block a:for="{{item.RankingList}}">
+          <list-item class="" index="{{item.index}}" onClick="onListItemClick">
+            <view class="tab-t">
               第{{index+1}}名：{{item.department}}，{{item.total_items}}条，{{item.total_scores}}分。
-          </view>
+            </view>
           </list-item>
-        </block>
+        </block> -->
+        <view class="tr bg-w ">
+          <view class="th1">排名</view>
+          <view class="th">事业部</view>
+          <view class="th ">建议条数</view>
+          <view class="th ">总分</view>
+        </view>
+        <view class="tablerow">
+          <block a:for="{{item.RankingList}}" a:for-item="i">
+            <view onTap="onListItemClick" class="tr bg-g" a:if="{{index % 2 == 0}}" data-rpno="{{i.rp_no}}">
+              <view class="td1">{{index+1}}</view>
+              <view class="td">{{i.department}}</view>
+              <view class="td">{{i.total_items}}</view>
+              <view class="td">{{i.total_scores}}</view>
+            </view>
+            <view onTap="onListItemClick" class="tr" a:else data-rpno="{{i.rp_no}}">
+              <view class="td1">{{index+1}}</view>
+              <view class="td">{{i.department}}</view>
+              <view class="td">{{i.total_items}}</view>
+              <view class="td">{{i.total_scores}}</view>
+            </view>
+          </block>
+        </view>
       </tab-content>
     </block>
   </tabs>

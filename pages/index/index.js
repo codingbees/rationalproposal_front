@@ -32,6 +32,18 @@ Page({
             {
               "icon": "./img/scoresb.png",
               "text": "积分兑换"
+            },
+            {
+              "icon": "./img/auditp2.png",
+              "text": "精益审核"
+            },
+            {
+              "icon": "./img/excellentb.png",
+              "text": "优秀建议"
+            },
+            {
+              "icon": "./img/difip.png",
+              "text": "建议征集"
             }
           ],
     },
@@ -60,6 +72,18 @@ Page({
       }else if(ev.detail.index == 5){
         dd.navigateTo({
           url: '/pages/scores/scores'
+        })
+      }else if(ev.detail.index == 6){
+        dd.navigateTo({
+          url: '/pages/doubleAudit/doubleAudit'
+        })
+      }else if(ev.detail.index == 7){
+        dd.navigateTo({
+          url: '/pages/excellent/excellent'
+        })
+      }else if(ev.detail.index == 8){
+        dd.navigateTo({
+          url: '/pages/difficult/difficult'
         })
       }
     },

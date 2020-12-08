@@ -1,5 +1,10 @@
+<view class="page1">
+<view class="fixed-wrap">
+  <view class="notice">
+    温馨提醒：奖品申请成功后，请联系精益专员何雯获取（电话18283935743）。
+  </view>
+</view>
 <view class="prize">
-
   <!-- <list> -->
   <!-- <view  class="prize"  >
     <list-item onClick="toExchange" a:for={{prize}}  index="{{item.id}}  ">
@@ -48,4 +53,5 @@
     <view >来兑换一份"{{selectPrize}}"吗？</view>
     
 	</modal>
+</view>
 </view>

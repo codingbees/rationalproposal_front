@@ -1,4 +1,9 @@
-
+<view class="father">
+    <image class="son" mode="scaleToFill" src="http://192.168.18.126:18080/icons/rp.png"/>
+</view>
+<view class="titl">
+    <text class="txt">合理化建议</text>
+</view>
 <view class="main">
     <grid onGridItemClick="onItemClick" columnNum="{{3}}" list="{{list5}}" />
 </view>

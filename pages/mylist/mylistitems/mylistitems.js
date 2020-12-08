@@ -30,7 +30,6 @@ Page({
       data: {no : query.no},
       dataType: 'json',
       success: res => {
-        
         console.log('getCheckItem is:',res)
         this.setData({getCheckItem : res.data.getCheckItem});
         this.setData({img : res.data.img});
@@ -52,9 +51,7 @@ Page({
         dd.alert({content:res.errorMessage})
       }
     });
-    dd.setNavigationBar({
-      title: '处理建议'
-    });
+    
   },
   selectDate(){
     dd.datePicker({
@@ -96,6 +93,18 @@ Page({
         }
       },
     });
+  },
+  previewImage(e){
+    console.log("e in preview is ")
+    console.log(e.currentTarget.dataset.img)
+    my.previewImage({
+      current: 2,
+      urls: [
+        this.data.src+e.currentTarget.dataset.img
+        
+      ],
+    });
+
   },
   toCancle(e){
     console.log('event is',e)

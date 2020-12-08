@@ -1,6 +1,14 @@
 .page-section-demo {
   display: flex;
-  justify-content: space-around;
+  flex:column;
+  /* justify-content: space-around; */
+}
+.page-section{
+  margin-bottom: 10rpx;
+  font-size: 28rpx;
+}
+.am-checkbox-value{
+  position: relative;
 }
 .image {
   background-color: white;
@@ -13,19 +21,46 @@
   flex-wrap: wrap;
   align-items: center;
   padding: 0 20rpx;
+  font-size: 28rpx;
 }
 
+input{
+  font-size: 28rpx !important;
+  text-align: inherit;
+  padding: 0px !important;
+  height: 28rpx !important;
+  width: 240rpx;
+}
+.inputAddScore{
+  line-height: 32rpx;
+  height: 36rpx !important;
+  width: 36rpx;
+  text-decoration:underline;
+}
+.inpu{
+  line-height: 32rpx;
+  height: 36rpx !important;
+  
+  
+}
+.addnode{
+  color: #ccc;
+}
+.inputc{
+  padding-top: 2px;
+}
 .row-title {
   flex: 1;
   padding-top: 16rpx;
   padding-bottom: 16rpx;
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: #000;
+  display: flex;
 }
 
 .row-extra {
   flex-basis: initial;
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: #888;
 }
 
@@ -33,4 +68,10 @@
   width: 32rpx;
   height: 32rpx;
   margin-left: 16rpx;
+}
+
+.changeItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
 }

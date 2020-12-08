@@ -46,16 +46,20 @@ require('../../node_modules/mini-ali-ui/es/am-switch/index?hash=05d2a9730dd6009b
 require('../../node_modules/mini-ali-ui/es/am-radio/index?hash=5a0c180d5ccf7c9d483dd4817cdab5489824013c');
 require('../../node_modules/mini-ali-ui/es/button/index?hash=e1617a0257fb9de746f60d50b03404ad924976c9');
 require('../../node_modules/mini-ali-ui/es/picker-item/index?hash=5a0c180d5ccf7c9d483dd4817cdab5489824013c');
+require('../../node_modules/mini-ali-ui/es/am-checkbox/index?hash=05d2a9730dd6009bf9446182f9c985f40f8c0f43');
 require('../../node_modules/mini-ali-ui/es/calendar/index?hash=5a0c180d5ccf7c9d483dd4817cdab5489824013c');
 require('../../node_modules/mini-ali-ui/es/badge/index?hash=05d2a9730dd6009bf9446182f9c985f40f8c0f43');
 require('../../node_modules/mini-ali-ui/es/tabs/index?hash=4a98b35daa3eee1b62960d4d5bbcbf254cbf11e3');
 require('../../node_modules/mini-ali-ui/es/tabs/tab-content/index?hash=05d2a9730dd6009bf9446182f9c985f40f8c0f43');
 require('../../node_modules/mini-ali-ui/es/modal/index?hash=febd4c40992222524e0db12a74760a28f8f9b339');
+require('../../node_modules/mini-ali-ui/es/collapse/index?hash=a11fdcdff8ea970c65f185a8731cafe48f67047c');
+require('../../node_modules/mini-ali-ui/es/collapse/collapse-item/index?hash=5a0c180d5ccf7c9d483dd4817cdab5489824013c');
+require('../../node_modules/mini-ali-ui/es/multi-liner/index?hash=05d2a9730dd6009bf9446182f9c985f40f8c0f43');
 require('../../pages/index/index?hash=1706df8dd2eaa2f210580303c73825b1f6b6b1b0');
 require('../../pages/mine/mine?hash=bb6be94eeb1a277c746c1e9a0a8507e056c481bf');
 require('../../pages/raiseProposal/raiseProposal?hash=32d7d2807ed4e666ef03b4b3fe8c38ecf2e34e68');
 require('../../pages/check/check?hash=6afb217eadccd1c4e8bfda0d0b7fb88324ecf08f');
-require('../../pages/check/toBeChecked/toBeChecked?hash=ed025514b9d3bed0c96e1b769f5b86ede95505e2');
+require('../../pages/check/toBeChecked/toBeChecked?hash=efa14a6cd1c3b32d9dcd5fa6cd7b781429682135');
 require('../../pages/check/reject/reject?hash=32d7d2807ed4e666ef03b4b3fe8c38ecf2e34e68');
 require('../../pages/handle/handle?hash=6afb217eadccd1c4e8bfda0d0b7fb88324ecf08f');
 require('../../pages/handle/toBeHandled/toBeHandled?hash=a10f9ecb22bf792e1c4e682dfce3917b6c3300ba');
@@ -63,6 +67,11 @@ require('../../pages/ranking/ranking?hash=02172bcf5a012b0831d072d14cba3c4476c27e
 require('../../pages/scores/scores?hash=c3ce55500d7c7c6a43bf6bfd10a7cfdb37d32663');
 require('../../pages/mylist/mylist?hash=02172bcf5a012b0831d072d14cba3c4476c27e55');
 require('../../pages/mylist/mylistitems/mylistitems?hash=6afb217eadccd1c4e8bfda0d0b7fb88324ecf08f');
+require('../../pages/excellent/excellent?hash=6afb217eadccd1c4e8bfda0d0b7fb88324ecf08f');
+require('../../pages/doubleAudit/doubleAudit?hash=6afb217eadccd1c4e8bfda0d0b7fb88324ecf08f');
+require('../../pages/doubleAudit/toBeDoubleAudit/toBeDoubleAudit?hash=a10f9ecb22bf792e1c4e682dfce3917b6c3300ba');
+require('../../pages/difficult/difficult?hash=6afb217eadccd1c4e8bfda0d0b7fb88324ecf08f');
+require('../../pages/community/community?hash=8803d242f0d662db19e3cfa0fb6bfe90ae8170bb');
 }
 self.bootstrapApp ? self.bootstrapApp({ success }) : success();
 }

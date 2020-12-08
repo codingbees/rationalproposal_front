@@ -1,24 +1,31 @@
 <view class="page">
-    <card thumb="{{thumb}}"
+<!-- bgImg="https://gw.alipayobjects.com/mdn/rms_ce4c6f/afts/img/A*OjyRRqjLM6MAAAAAAAAAAABkARQnAQ" -->
+    <!-- <card thumb="{{thumb}}"
       title="{{username}}" 
       subTitle="{{departments}}" 
       action="我的积分" 
       onActionClick="onActionClick" 
       extraAction="我的兑换记录" 
       onExtraActionClick="onExtraActionClick" 
-      bgImg="https://gw.alipayobjects.com/mdn/rms_ce4c6f/afts/img/A*OjyRRqjLM6MAAAAAAAAAAABkARQnAQ" 
+      bgImg="http://110.186.68.166:18901/icons/logo.png"
       expand="{{expand3rd}}" 
       onCardClick="toggle" 
-      />
-    <view class="message" a:if="{{showMyMessage}}">
+      /> -->
+      <!-- <card 
+      bgImg="http://110.186.68.166:18901/icons/logo.png"
+      /> -->
+      <view>
+        <image mode="aspectFit" src="http://110.186.68.166:18901/icons/logo.png"/>
+      </view>
+    <view class="message" >
     <view>
       姓名：{{username}} 
     </view>
     <view>
-      总积分：{{myScores.scores[0].total_scores}}
+      总积分：{{myScores.scores[0].total_scores==null?'0':myScores.scores[0].total_scores}}
     </view>
     <view>
-      已使用的分数：{{myScores.used_score[0].total}}
+      已使用的分数：{{myScores.used_score[0].total==null?0:myScores.scores[0].total}}
     </view>
     <view>
       剩余分数：{{myScores.scores[0].total_scores-myScores.used_score[0].total}}
@@ -30,7 +37,7 @@
     </view>
    
 
-  <view class="table" a:if="{{showMyExchange}}">
+  <view class="table" a:if="{{myExchangeList.length!=0}}">
     <view class="tr bg-w">
       <view class="th1">序号</view>
       <view class="th">申请日期</view>
@@ -54,5 +61,8 @@
         <view class="td">{{item.apply_username}}</view>
       </view>
     </block>
+  </view>
+  <view a:elseif class="message">
+    您的奖品兑换记录为空
   </view>
 </view>

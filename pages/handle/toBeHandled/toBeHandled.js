@@ -53,6 +53,16 @@ Page({
       title: '处理建议'
     });
   },
+  previewImage(e){
+    console.log("e in preview is ")
+    console.log(e.currentTarget.dataset.img)
+    my.previewImage({
+      current: 2,
+      urls: [
+        this.data.src+e.currentTarget.dataset.img
+      ],
+    });
+  },
   selectDate(){
     dd.datePicker({
       format: 'yyyy-MM-dd',
@@ -99,6 +109,10 @@ Page({
      var formdata = e.detail.value;
     if(formdata.description_after_improve == null || "" == formdata.description_after_improve){
       dd.showToast({content:'请填写改善完成情况描述！'})
+      return false;
+    }
+    if(formdata.picture_after_improve == null || "" == formdata.picture_after_improve){
+      dd.showToast({content:'请上传处理完成后的照片！'})
       return false;
     }
     if(formdata.actural_finish_date == null || "" == formdata.actural_finish_date){

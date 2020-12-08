@@ -5,8 +5,9 @@ button + button {
   font-size: 14px;
   margin-left: 36rpx;
   line-height: 28px
-
-
+}
+.am-card-thumb{
+  border-style: none !important;
 }
 .table {
 border: 0px solid darkgray;

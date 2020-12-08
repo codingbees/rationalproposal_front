@@ -20,7 +20,8 @@ page {
 }
 
 .page-section-title {
-  padding: 16rpx 32rpx;
+  font-size: 32rpx;
+  padding: 6rpx 16rpx;
 }
 
 .page-section-demo {

@@ -13,19 +13,20 @@
   flex-wrap: wrap;
   align-items: center;
   padding: 0 20rpx;
+  font-size: 28rpx;
 }
 
 .row-title {
   flex: 1;
   padding-top: 16rpx;
   padding-bottom: 16rpx;
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: #000;
 }
 
 .row-extra {
   flex-basis: initial;
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: #888;
 }
 

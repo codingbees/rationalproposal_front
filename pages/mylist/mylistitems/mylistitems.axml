@@ -1,6 +1,16 @@
 <view class="dyt-list" style="position: relative;">
   <form onSubmit="onSubmit" onReset="onReset" enctype="multipart/form-data">
     <view class="page-section">
+    <view>
+      <view a:if="{{getCheckItem[0].is_excellent_aft_ck}}" class="excel-line">
+        <image mode="scaleToFill" src="http://192.168.18.126:18080/icons/excellentb.png" class="img" />
+        <text class="txt">优秀建议</text>
+      </view>
+      <view a:if="{{getCheckItem[0].is_difficult_aft_ck }}" class="excel-line">
+        <image mode="scaleToFill" src="http://192.168.18.126:18080/icons/difip.png" class="img" />
+        <text class="txt">困难建议</text>
+      </view>
+      </view>
       <view class="row">
         <view class="row-title">发起时间 : {{getCheckItem[0].create_time}}</view>
       </view>
@@ -27,7 +37,7 @@
        </view>
        <view class="row">
         <view class="page-section-demo" onTap="onTap" a:for="{{img}}" a:for-item="item">
-          <image class="image" onTap="onTap" mode="widthFix" src="{{src}}{{item}}" onError="imageError" onLoad="imageLoad" />
+          <image class="image" onTap="previewImage" data-img="{{item}}" mode="widthFix" src="{{src}}{{item}}" onError="imageError" onLoad="imageLoad" />
         </view>
         </view>
       </view>

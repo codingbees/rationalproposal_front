@@ -2,17 +2,17 @@ let app = getApp();
 
 Page({
   data: {
-    fileqty:0,
-    fileupdateqty:0,
-    happenDate:'',
-    requestData:'',
-    filename:'',
-    leaderName:'',
-    leaderId:'',
-    userid:'',
-    partid:'',
-    partname:'',
-    username:'',
+    fileqty: 0,
+    fileupdateqty: 0,
+    happenDate: '',
+    requestData: '',
+    filename: '',
+    leaderName: '',
+    leaderId: '',
+    userid: '',
+    partid: '',
+    partname: '',
+    username: '',
     array: [],
     index: 0,
     arrayLine: [],
@@ -24,96 +24,102 @@ Page({
     arrayAuditorJobNo: [],
     arrayDep: [],
     indexDep: 0,
-    modalOpened5:false,
+    modalOpened5: false,
     buttons5: [
       { text: '取消' },
       { text: '确定', extClass: 'buttonBold' },
     ],
+    picNames:[],
+    imgspath:'../../../../D:\\apache-tomcat-8.0.26\\webapps\\rationalproposal\\'
   },
   onLoad() {
     dd.getStorage({
-      key:'userInfo',
-      success:(res) => {
+      key: 'userInfo',
+      success: (res) => {
         console.log("userInfo is")
         console.log(res)
-        this.setData({userid : res.data.jobnumber});
-        this.setData({partid : res.data.department});
-        this.setData({username : res.data.name});
-        this.setData({partname : res.data.departments});
+        this.setData({ userid: res.data.jobnumber });
+        this.setData({ partid: res.data.department });
+        this.setData({ username: res.data.name });
+        this.setData({ partname: res.data.departments });
         // this.setData({arrayDep : [res.data.departments]}); 获取用户所在的部门
+        dd.httpRequest({
+          url: app.globalData.serverUrl + '/getAuditor',
+          method: 'POST',
+          data: { userid: this.data.userid },
+          dataType: 'json',
+          success: res => {
+            console.log(this.data.userid)
+            console.log("res in getAuditor")
+            console.log(res)
+            this.setData({ arrayCheck: res.data.arrayAuditor });
+            this.setData({ arrayAuditorJobNo: res.data.arrayAuditorJobNo });
+          },
+          fail: function (res) {
+            dd.alert({ content: '获取改善类型失败，请联系管理员' });
+          }
+        });
       },
-      fail:function(res){
-        dd.alert({content:res.errorMessage})
+      fail: function (res) {
+        dd.alert({ content: res.errorMessage })
       }
     });
     dd.httpRequest({
-      url: app.globalData.serverUrl+'/getDepartment',
+      url: app.globalData.serverUrl + '/getDepartment',
       method: 'POST',
-      headers:{'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
       dataType: 'json',
       success: res => {
         console.log(res)
-        this.setData({arrayDep:res.data.arrayDep});
+        this.setData({ arrayDep: res.data.arrayDep });
       },
-      fail: function(res) {
-        dd.alert({content: '获取事业部信息失败，请联系管理员'});
+      fail: function (res) {
+        dd.alert({ content: '获取事业部信息失败，请联系管理员' });
       }
     });
     dd.httpRequest({
-      url: app.globalData.serverUrl+'/getWorkshop',
+      url: app.globalData.serverUrl + '/getWorkshop',
       method: 'POST',
-      headers:{'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
       dataType: 'json',
       success: res => {
         console.log(res)
-        this.setData({array:res.data.array});
+        this.setData({ array: res.data.array });
       },
-      fail: function(res) {
-        dd.alert({content: '获取车间部信息失败，请联系管理员'});
+      fail: function (res) {
+        dd.alert({ content: '获取车间部信息失败，请联系管理员' });
       }
     });
     //获取产线名称
     dd.httpRequest({
-      url: app.globalData.serverUrl+'/getLine',
+      url: app.globalData.serverUrl + '/getLine',
       method: 'POST',
-      headers:{'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
       dataType: 'json',
       success: res => {
         console.log(res)
-        this.setData({arrayLine  : res.data.arrayLine});
+        this.setData({ arrayLine: res.data.arrayLine });
       },
-      fail: function(res) {
-        dd.alert({content: '获取产线失败，请联系管理员'});
+      fail: function (res) {
+        dd.alert({ content: '获取产线失败，请联系管理员' });
       }
     });
     //获取改善类型
     dd.httpRequest({
-      url: app.globalData.serverUrl+'/getType',
+      url: app.globalData.serverUrl + '/getType',
       method: 'POST',
-      headers:{'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
       dataType: 'json',
       success: res => {
-        this.setData({arrayType  : res.data.arrayType});
+        this.setData({ arrayType: res.data.arrayType });
       },
-      fail: function(res) {
-        dd.alert({content: '获取改善类型失败，请联系管理员'});
+      fail: function (res) {
+        dd.alert({ content: '获取改善类型失败，请联系管理员' });
       }
     });
     //获取审核人
-    dd.httpRequest({
-      url: app.globalData.serverUrl+'/getAuditor',
-      method: 'POST',
-      headers:{'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
-      dataType: 'json',
-      success: res => {
-        this.setData({arrayCheck  : res.data.arrayAuditor});
-        this.setData({arrayAuditorJobNo  : res.data.arrayAuditorJobNo});
-      },
-      fail: function(res) {
-        dd.alert({content: '获取改善类型失败，请联系管理员'});
-      }
-    });
-    
+
+
     dd.setNavigationBar({
       title: '发起建议'
     });
@@ -126,7 +132,7 @@ Page({
   //     },
   //   });
   // },
-  selectFile(){
+  selectFile() {
     var _this = this;
     dd.chooseImage({
       sourceType: ['camera', 'album'],
@@ -134,28 +140,35 @@ Page({
       success: res => {
 
         console.log("chooseImage res is:")
-        
+        console.log(res)
         var paths = new Array();
-        for(let i = 0;i <res.filePaths.length;i++ ){
-           paths[i] = (res.filePaths && res.filePaths[i]) || (res.apFilePaths && res.apFilePaths[i]);
-           this.data.fileupdateqty++;
-           this.setData({fileqty:this.data.fileupdateqty})
-           dd.uploadFile({
-          url: app.globalData.serverUrl+'/uploadFile',
-          fileType: 'image',
-          fileName: 'file',
-          filePath: paths[i],
-          success: res => {
-            let resp =JSON.parse(res.data);
-            // this.setData({filename:resp.fileName});
-            this.data.filename+=resp.fileName;
-            console.log("file names are:")
-            console.log(this.data.filename)
-          },
-          fail: function (res) {
-            dd.alert({ title: `上传失败：${JSON.stringify(res)}` });
-          },
-        });
+        for (let i = 0; i < res.filePaths.length; i++) {
+          paths[i] = (res.filePaths && res.filePaths[i]) || (res.apFilePaths && res.apFilePaths[i]);
+          _this.data.fileupdateqty++;
+          _this.setData({ fileqty: _this.data.fileupdateqty })
+          dd.uploadFile({
+            url: app.globalData.serverUrl + '/uploadFile',
+            fileType: 'image',
+            fileName: 'file',
+            filePath: paths[i],
+            success: res => {
+            console.log(res)
+              let resp = JSON.parse(res.data);
+              _this.setData({
+
+                filename : _this.data.filename+resp.fileName,
+                
+              })
+              // _this.data.picNames[i]= resp.picName;
+              // console.log("file names are:",i)
+              // console.log(_this.data.filename)
+              // console.log(resp.picName)
+              // console.log(_this.data.picNames[i])
+            },
+            fail: function (res) {
+              dd.alert({ title: `上传失败：${JSON.stringify(res)}` });
+            },
+          });
         }
       },
     });
@@ -175,7 +188,7 @@ Page({
   //           success:resp => {
   //             this.setData({leaderName:resp[0].name});
   //             this.setData({leaderId:resp[0].userId});
-           
+
   //           },
   //           fail:function(err){}
   //       });
@@ -185,46 +198,46 @@ Page({
   //     }
   //   });
   // },
-  onSubmit: function(e) {
+  onSubmit: function (e) {
     e.detail.value.department = this.data.arrayDep[this.data.indexDep];
     e.detail.value.workshop = this.data.array[this.data.index];
-    e.detail.value.prodcutionLine = this.data.arrayLine[this.data.indexLine];  
-    e.detail.value.improve_type = this.data.arrayType[this.data.indexType];  
+    e.detail.value.prodcutionLine = this.data.arrayLine[this.data.indexLine];
+    e.detail.value.improve_type = this.data.arrayType[this.data.indexType];
     e.detail.value.picture_of_problem = this.data.filename;
     e.detail.value.auditor_username = this.data.arrayCheck[this.data.indexCheck];
     e.detail.value.auditor_userid = this.data.arrayAuditorJobNo[this.data.indexCheck];
     //2020-07-02 新增判断
-     var formdata = e.detail.value;
-    if(formdata.description == null || "" == formdata.description){
-      dd.showToast({content:'请填写问题描述！'})
+    var formdata = e.detail.value;
+    if (formdata.description == null || "" == formdata.description) {
+      dd.showToast({ content: '请填写问题描述！' })
       return false;
     }
-    if(formdata.proposal == null || "" == formdata.proposal){
-      dd.showToast({content:'请填写改善建议！'})
+    if (formdata.proposal == null || "" == formdata.proposal) {
+      dd.showToast({ content: '请填写改善建议！' })
       return false;
     }
-    if(formdata.find_userid == null || "" == formdata.find_userid){
-      dd.showToast({content:'未获取到您的员工信息，请尝试重新登录或升级钉钉至最新版！'})
+    if (formdata.find_userid == null || "" == formdata.find_userid) {
+      dd.showToast({ content: '未获取到您的员工信息，请尝试重新登录或升级钉钉至最新版！' })
       return false;
     }
-    
+
     dd.httpRequest({
-      url: app.globalData.serverUrl+'/submitProposal',
+      url: app.globalData.serverUrl + '/submitProposal',
       method: 'POST',
-      headers:{'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
-      data:e.detail.value,
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      data: e.detail.value,
       dataType: 'json',
-      success: function(res) {
+      success: function (res) {
         dd.showToast({
           type: 'success',
           content: "合理化建议发起成功！",
           duration: 1100
         });
       },
-      fail: function(res) {
-        dd.alert({content: '发起失败，请联系管理员'});
+      fail: function (res) {
+        dd.alert({ content: '发起失败，请联系管理员' });
       },
-      complete: function(res) {
+      complete: function (res) {
         // dd.redirectTo({
         //  url: '/pages/index/index'
         // })
@@ -232,7 +245,7 @@ Page({
         //  url: '/pages/index/index'
         // })
         dd.navigateBack({
-            delta: 2
+          delta: 2
         })
       }
     });
@@ -244,21 +257,24 @@ Page({
       indexDep: e.detail.value,
     });
     dd.httpRequest({
-      url: app.globalData.serverUrl+'/getWorkshop',
+      url: app.globalData.serverUrl + '/getWorkshop',
       method: 'POST',
-      headers:{'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
-      data : {selectDep : _this.data.arrayDep[e.detail.value]},
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      data: { selectDep: _this.data.arrayDep[e.detail.value] },
       dataType: 'json',
-      success: function(res) {
-        console.log("res from getline")
+      success: function (res) {
+        console.log("res from getWorkshop")
         console.log(res)
-        _this.setData({array  : res.data.array});
-        _this.setData({arrayLine  : res.data.arrayLine});
-        _this.setData({arrayCheck : res.data.arrayAuditor});
-        _this.setData({arrayAuditorJobNo : res.data.arrayAuditorJobNo});
+        _this.setData({ array: res.data.array });
+        _this.setData({ arrayLine: res.data.arrayLine });
+        if (_this.data.arrayAuditorJobNo[0] != 'FL00026763') {
+          //onload时已定义若发起人是班长则审核人为何雯。此处若审核人为何雯，则不改审核人
+          _this.setData({ arrayCheck: res.data.arrayAuditor });
+          _this.setData({ arrayAuditorJobNo: res.data.arrayAuditorJobNo });
+        }
       },
-      fail: function(res) {
-        dd.alert({content: 'workshop change failed'});
+      fail: function (res) {
+        dd.alert({ content: 'workshop change failed' });
       },
     });
   },
@@ -268,20 +284,23 @@ Page({
       index: e.detail.value,
     });
     dd.httpRequest({
-      url: app.globalData.serverUrl+'/getLine',
+      url: app.globalData.serverUrl + '/getLine',
       method: 'POST',
-      headers:{'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
-      data : {selectws : _this.data.array[e.detail.value]},
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      data: { selectws: _this.data.array[e.detail.value] },
       dataType: 'json',
-      success: function(res) {
+      success: function (res) {
         console.log("res from getline")
         console.log(res)
-        _this.setData({arrayLine  : res.data.arrayLine});
-        _this.setData({arrayCheck : res.data.arrayAuditor});
-        _this.setData({arrayAuditorJobNo : res.data.arrayAuditorJobNo});
+        _this.setData({ arrayLine: res.data.arrayLine });
+        if (_this.data.arrayAuditorJobNo[0] != 'FL00026763') {
+          //onload时已定义若发起人是班长则审核人为何雯。此处若审核人为何雯，则不改审核人
+          _this.setData({ arrayCheck: res.data.arrayAuditor });
+          _this.setData({ arrayAuditorJobNo: res.data.arrayAuditorJobNo });
+        }
       },
-      fail: function(res) {
-        dd.alert({content: 'workshop change failed'});
+      fail: function (res) {
+        dd.alert({ content: 'workshop change failed' });
       },
     });
   },

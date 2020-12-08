@@ -1,13 +1,15 @@
 .row {
   display: flex;
   align-items: center;
-  padding: 0 30rpx;
+  padding: 0 16rpx;
+  font-size: 32rpx;
 }
-
+.page-section{
+  margin: 20rpx 0;
+}
 .row-title {
   flex: 1;
-  padding-top: 10rpx;
-  padding-bottom: 10rpx;
+  padding: 20rpx 0;
   font-size: 32rpx;
   color: #000;
 }
@@ -23,3 +25,16 @@
   height: 32rpx;
   margin-left: 16rpx;
 }
+
+.pics {
+  background-color: #e1e1e1;
+  width: 200rpx;
+  height: 200rpx;
+  float: left;
+  margin: 9rpx;
+  border-radius: 5rpx;
+}
+/* .page-section{
+  display: flex;
+  flex-wrap: wrap;
+} */

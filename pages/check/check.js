@@ -53,53 +53,30 @@ Page({
     console.log("ev is:")
     console.log(ev);
     dd.navigateTo({
-      url: '/pages/check/toBeChecked/toBeChecked?no='+ev.index
+      url: '/pages/check/toBeChecked/toBeChecked?no='+ev.currentTarget.dataset.rpno
     })
   },
-  onSwitchClick() {
-    this.setData({
-      changeSwitch: !this.data.changeSwitch,
-    });
-    my.alert({
-      content: 'switch changed',
-    });
-  },
-  onCheckClick() {
-    this.setData({
-      changeCheckbox: !this.data.changeCheckbox,
-    });
-    my.alert({
-      content: 'checkbox changed',
-    });
-  },
-  onCapsuleClick() {
-    my.alert({
-      content: 'capsule button click',
-    });
-  },
-  onScrollToLower() {
-    this.setData({
-      loadMore: 'load',
-    });
-    const { items5 } = this.data;
-    // 加入 maxList 用于判断“假设”数据加载完毕后的情况
-    if (this.data.maxList > 0) {
-      const newItems = items5.concat(newitems);
-      const MAXList = this.data.maxList - 1;
-      this.setData({
-        items5: newItems,
-        maxList: MAXList,
-      });
-    } else {
-      // 数据加载完毕之后，改变 loadMore 为 over 即可
-      this.setData({
-        loadMore: 'over',
-      });
-    }
-  },
-  onAlphabetClick(ev) {
-    my.alert({
-      content: JSON.stringify(ev.data),
-    });
-  },
+  // onSwitchClick() {
+  //   this.setData({
+  //     changeSwitch: !this.data.changeSwitch,
+  //   });
+  //   my.alert({
+  //     content: 'switch changed',
+  //   });
+  // },
+  // onCheckClick() {
+  //   this.setData({
+  //     changeCheckbox: !this.data.changeCheckbox,
+  //   });
+  //   my.alert({
+  //     content: 'checkbox changed',
+  //   });
+  // },
+  // onCapsuleClick() {
+  //   my.alert({
+  //     content: 'capsule button click',
+  //   });
+  // },
+
+  
 });

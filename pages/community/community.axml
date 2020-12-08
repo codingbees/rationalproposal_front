@@ -1,0 +1,82 @@
+<view class="pageall">
+  <!-- <view>
+    <button type="primary" onTap="">
+      点击筛选
+    </button>
+  </view> -->
+  <scroll-view style="height: 100vh; " 
+		scroll-y onScrollToLower="onScrollToLower" enable-back-to-top="true">
+    <block a:for="{{CommunityDataList}}">
+      <view class="area">
+        <view class="usertitle">
+          <view class="username"> {{index+1}},{{item.find_username}},{{item.find_user_part_name}}</view>
+          <view class="isexcellent" a:if="{{item.is_excellent_aft_ck}}">
+            <image mode="scaleToFill" class="iconimg" src="http://192.168.18.126:18080/icons/excellentb.png"/>
+        优秀建议
+          </view>
+        </view>
+        <view class="proposalall">
+          <view class="problem">
+            <view class="problemarea">
+              <view class="problemtitile" onTap="showProblemPic">问题</view>
+              <view class="problemimg" onTap="showProblemPic" data-no="{{item.rp_no}}" data-pic="{{item.picture_of_problem}}">
+                <am-icon type="picture" size="20" /></view>
+            </view>
+            <view class="problemcontent">{{item.description}}</view>
+          </view>
+          <view class="proposal">
+            <view class="proposalarea">
+              <view class="proposaltitle">建议</view>
+              <!--<view a:if="false" class="proposalimg" data-no="{{item.rp_no}}" data-pic="{{item.picture_of_problem}}"><am-icon type="picture" size="20" /></view> -->
+            </view>
+            <view class="proposalcontent">{{item.proposal}}</view>
+          </view>
+          <view class="atferimprove">
+            <view class="atferimprovearea">
+              <view class="atferimprovetitle">改善后</view>
+              <view class="atferimproveimg"onTap="showProblemPic" data-no="{{item.rp_no}}" data-pic="{{item.picture_after_improve}}">
+                <am-icon type="picture" size="20" /></view>
+            </view>
+            <view class="atferimprovecontent">{{item.description_after_improve}}</view>
+          </view>
+          <view class="footer">
+            <view class="likeandcomment">
+              <view class="like" onTap="like" data-im="{{item}}" data-likeuserid="{{item.likeuserid}}" data-rpno="{{item.rp_no}}">
+                <am-icon type="good" size="20" />
+              {{item.sumlike==null?0:item.sumlike}}
+              </view>
+              <view class="like" onTap="comment" data-im="{{item}}" data-comment_username="{{item.comment_username}}" data-rpno="{{item.rp_no}}">
+                <am-icon type="chat" size="20" />
+              {{item.sumcomment==null?0:item.sumcomment}}
+              </view>
+            </view>
+            <view class="commentarea" a:if="{{item.rp_no==showrCommentRpno}}">
+              <view class="nocomment" a:if="{{item.isComment==null}}">
+                <text class="nocomment">还没有评论</text>
+              </view>
+              <view  a:else>
+                <view class="haveCommentTotal" a:for="{{commentArr}}" a:for-item="i">
+                  <text class="haveComment haveCommentTitle" decode="{{true}}" class="haveCommentTitle">{{i[2]}}:</text>
+                  <text class="haveComment" class="haveCommentContent">{{i[3]}}</text>
+                  <view class="haveCommentIcon" a:if="{{userjobnumber==i[1]}}" onTap="toDeleteComment" data-cont="{{i[3]}}" data-rpnum="{{item.rp_no}}" data-id="{{i[0]}}" data-content="{{i[3]}}">
+                  <am-icon color="gray" type="close" size="16" />
+                  </view>
+              </view>
+              </view>
+              <form onSubmit="onSubmit" onReset="onReset">
+              <input name="commentrpno"  style="display:none" value={{item.rp_no}} />
+              <input name="haveconments"  style="display:none" value={{item.isComment}} />
+                  <view >
+                  <input focus="focus" class="ipt" type="text" placeholder="请输入" value="{{commentcomten}}" name="comment"/>
+                  </view>
+                  <view class="btn">
+                    <button  type="primary" size="mini" formType="submit">提交</button>
+                    </view>
+              </form>
+            
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

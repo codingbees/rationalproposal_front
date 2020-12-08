@@ -1,15 +1,30 @@
-.prize{
+.page1{
+  margin: 0rpx;
   /* background-color: black; */
   /* width: 750rpx; */
 }
+.notice{
+  margin: 5rpx;
+  color: red;
+  /* padding:0rpx 10rpx 10rpx 10rpx; */
+}
 
+.fixed-wrap{
+  /* height: 116rpx; */
+  background-color: #eee;
+  position: fixed;
+  /* top: 100; */
+
+  z-index: 2000;
+}
 .prizelist{
   display: flex;
   flex-wrap: wrap;
   /* width: 750rpx; */
   /* flex-wrap: wrap; */
-  padding: 0 15rpx;
+  padding: 100rpx 22rpx;
   background-color: #eee;
+  border-radius: 15rpx;
   justify-content: space-between;
 }
 
@@ -18,13 +33,15 @@
   width: 300rpx;
   height: 450rpx;
   background-color: white;
-  margin-bottom: 10rpx;
+  margin-bottom: 20rpx;
   padding: 0 20rpx;
+
 }
 
 .prizeitem image{
   width: 100%;
   height: 350rpx;
+  border-radius: 12rpx;
 
 }
 

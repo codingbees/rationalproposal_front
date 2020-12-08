@@ -44,11 +44,20 @@ Page({
     });
 
   },
+  onShareAppMessage(e) {
+    console.log("e share ")
+    console.log(e)
+    return {
+      title: '合理化建议',
+      desc: '合理化建议审核页面',
+      path: '/pages/mylist/mylist'
+    };
+  },
   onListItemClick(event){
     console.log("onListItemClick event is:")
     console.log(event)
     dd.navigateTo({
-      url: '/pages/mylist/mylistitems/mylistitems?no='+event.index
+      url: '/pages/mylist/mylistitems/mylistitems?no='+event.currentTarget.dataset.rpno
     })
 
   },

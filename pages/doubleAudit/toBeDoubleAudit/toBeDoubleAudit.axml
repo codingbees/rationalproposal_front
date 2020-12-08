@@ -1,0 +1,109 @@
+<view class="dyt-list" style="position: relative;">
+  <form onSubmit="onSubmit" onReset="onReset" enctype="multipart/form-data">
+    <view class="page-section">
+      <view class="row">
+        <view class="row-title">发起时间 : {{getCheckItem[0].create_time}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">发起人 : {{getCheckItem[0].find_username}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">车间 : {{getCheckItem[0].workshop}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">产线 : {{getCheckItem[0].prodcutionLine}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title">问题描述 : {{getCheckItem[0].description}}</view>
+      </view>
+      <view class="form-line" />
+      <view class="page-section">
+        <view class="row">
+          <view class="row-title">问题图片 :</view>
+        </view>
+        <view class="row">
+          <view class="page-section-demo"  a:for="{{img}}" a:for-item="item">
+            <image class="image" onTap="previewImage" data-img="{{item}}" mode="widthFix" src="{{src}}{{item}}" onError="imageError" onLoad="imageLoad" />
+          </view>
+        </view>
+        <view class="form-line" />
+        <!--<view class="row"><image class="image" onTap="onTap" mode="widthFix" src="{{src}}{{item.picture_of_problem}}" onError="imageError" onLoad="imageLoad" /></view> -->
+        <!--<image mode="scaleToFill" src="/img/1.jpg"/>  -->
+        <!--<view class="row"><view class="row-title">问题图片 : {{getCheckItem[0].picture_of_problem}}</view></view> -->
+        <view class="row">
+          <view class="row-title">改善建议 : {{getCheckItem[0].proposal}}</view>
+        </view>
+        <view class="form-line" />
+        <view class="row">
+          <view class="row-title">改善类型 : {{getCheckItem[0].improve_type}}</view>
+        </view>
+        <view class="form-line" />
+        <view class="row">
+          <view class="row-title">审核意见 : {{getCheckItem[0].audit_opinion}}</view>
+        </view>
+        <view class="form-line" />
+        <view class="row">
+          <view class="row-title">分值 : {{getCheckItem[0].scores}}</view>
+        </view>
+        <view class="form-line" />
+        <view >
+          <view class="row">
+            <view class="row-title">
+              <view class="han">
+                处理人姓名：
+              </view>
+              <input onInput="changename" name="handler_username" class="input" value="{{handler_username}}" placeholder="请输入（必填）" ></input>
+            </view>
+          </view>
+          <view class="form-line" />
+          <view class="row">
+            <view class="row-title">
+            <view class="han">
+                处理人工号：
+              </view>
+              <input onInput="changeid" name="handler_userid" class="input" value="{{handler_userid}}" placeholder="请输入（必填）" />
+            </view>
+          </view>
+        </view>
+        <view class="form-line" />
+        <view class="row">
+          <view class="row-title">计划完成日期 : {{getCheckItem[0].commit_finish_date}}</view>
+        </view>
+        <view class="form-line" />
+        <view class="page-section" a:if="{{getCheckItem[0].is_excellent}}">
+          <view class="page-section-demo switch-list">
+            <view class="switch-item">
+                  同意优秀建议
+              <switch name="is_excellent_aft_ck" color="skyblue" />
+            </view>
+          </view>
+        </view>
+        <view class="form-line" />
+        <view class="page-section" a:if="{{getCheckItem[0].is_difficult}}">
+          <view class="page-section-demo switch-list">
+            <view class="switch-item">
+              同意困难建议
+              <switch name="is_difficult_aft_ck" color="blue" />
+            </view>
+          </view>
+        </view>
+        <view class="form-line" />
+        <view class="row">
+          <view class="row-title">是否同意的意见描述 :</view>
+        </view>
+        <view >
+          <textarea maxlength="400" style="margin: 20rpx;" onBlur="bindTextAreaBlur" name="desc_aft_db_audit" auto-height placeholder="请输入(必填)" />
+        </view>
+        <view class="page-section-btns">
+          <view>
+            <button type="default" size="mini" formType="reset">重置</button></view>
+          <view>
+            <button type="primary" size="mini" formType="submit">提交</button></view>
+        </view>
+      </view>
+      </form>
+    </view>

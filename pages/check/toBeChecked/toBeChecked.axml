@@ -1,5 +1,4 @@
 <view class="dyt-list" style="position: relative;">
-  
   <form onSubmit="onSubmit" onReset="onReset" enctype="multipart/form-data">
     <view class="page-section">
       <view class="row">
@@ -23,23 +22,19 @@
       </view>
       <view class="form-line" />
       <view  >
-      <view class="row">
-       <view class="row-title">问题图片 :</view>
-       </view>
-       <view class="row">
-        <view class="page-section-demo" onTap="onTap" a:for="{{img}}" a:for-item="item">
-          <image class="image" onTap="onTap" mode="widthFix" src="{{src}}{{item}}" onError="imageError" onLoad="imageLoad" />
+        <view class="row">
+          <view class="row-title">问题图片 :</view>
+        </view>
+        <view class="row">
+          <view class="page-section-demo" onTap="onTap" a:for="{{img}}" a:for-item="item">
+            <image class="image" onTap="previewImage" data-img="{{item}}" onTap="onTap" mode="widthFix" src="{{src}}{{item}}" onError="imageError" onLoad="imageLoad" />
+          </view>
         </view>
       </view>
-      </view>
       <view class="form-line" />
-      <!-- <view class="row">
-      <image class="image" onTap="onTap" mode="widthFix" src="{{src}}{{item.picture_of_problem}}" onError="imageError" onLoad="imageLoad" />
-      </view> -->
-        <!-- <image mode="scaleToFill" src="/img/1.jpg"/>  -->
-      <!-- <view class="row">
-        <view class="row-title">问题图片 : {{getCheckItem[0].picture_of_problem}}</view>
-      </view> -->
+      <!--<view class="row"><image class="image" onTap="onTap" mode="widthFix" src="{{src}}{{item.picture_of_problem}}" onError="imageError" onLoad="imageLoad" /></view> -->
+      <!--<image mode="scaleToFill" src="/img/1.jpg"/>  -->
+      <!--<view class="row"><view class="row-title">问题图片 : {{getCheckItem[0].picture_of_problem}}</view></view> -->
       <view class="row">
         <view class="row-title">改善建议 : {{getCheckItem[0].proposal}}</view>
       </view>
@@ -59,26 +54,72 @@
       <view >
         <picker onChange="scoreChange" name="scores" value="{{indexScore}}" range="{{scores}}">
           <view class="row">
-            <view class="row-title">分值：   当前选择：{{scores[indexScore]}}</view>
+            <view class="row-title">基础分 :{{scores[indexScore]}}  分<text class="addnode">（点击选择）</text></view>
           </view>
         </picker>
+      </view>
+      <view class="form-line" />
+      <view class="row">
+        <view class="row-title inputc">附加分 :
+        <input class="inputAddScore"  name="addScore" type="text" onInput="changescore"  value="{{addScore}}" />分<text class="addnode">（根据经济价值计算,点击下划线处输入）</text> 
+        </view>
       </view>
       <view class="form-line" />
       <!--<view class="page-section"><picker onChange="scoreChange" name="scores" value="{{indexScore}}" range="{{scores}}"><view class="row"><view class="row-title">分值：</view><view class="row-extra">当前选择：{{scores[indexScore]}}分</view></view></picker></view> -->
-      <view >
-        <picker onChange="handlerChange" name="handler_username" value="{{indexHandler}}" range="{{handlers}}">
+      <!-- 2020-11-26 按何雯要求，凡是提交精益的的建议，处理人由精益重新自由选取，不再限制为原发起人的班长 -->
+      <view>
+        <view a:if="{{userjobnumber=='FL00000178'||userjobnumber=='FL00026763'}}">
           <view class="row">
-            <view class="row-title">处理人：   当前选择：{{handlers[indexHandler]}}</view>
+            <view class="row-title">
+              <view class="han inputc">
+                处理人姓名 :
+              </view>
+              <input onInput="changename" class="inpu" name="handler_username"  value="{{handler_username}}" placeholder="请输入（必填）" ></input>
+            </view>
           </view>
-        </picker>
+          <view class="form-line" />
+          <view class="row">
+            <view class="row-title">
+            <view class="han inputc">
+                处理人工号 :
+              </view>
+              <input onInput="changeid" class="inpu" name="handler_userid"  value="{{handler_userid}}" placeholder="请输入（必填）" />
+            </view>
+          </view>
+        </view>
+        <view a:else>
+          <picker onChange="handlerChange" name="handler_username" value="{{indexHandler}}" range="{{handlers}}">
+            <view class="row">
+              <view class="row-title">处理人 :   {{handlers[indexHandler]}}</view>
+            </view>
+          </picker>
+          <input name="handler_userid" class="input" style="display:none" value={{handler_userid}} />
+        </view>
       </view>
       <view class="form-line" />
-      <input name="handler_userid" class="input" style="display:none" value={{handler_userid}} />
       <view class="row">
         <view class="row-title">
-          <button type="default" size="mini" onTap="selectDate" plain>预计完成日期</button></view>
+          <button type="default" size="mini" onTap="selectDate" plain>预计完成日期 :</button></view>
         <view class="form-row-content">
           <input name="commit_finish_date" class="input" disabled="true" value="{{commitDate}}" placeholder="请选择（必填）"/>
+        </view>
+      </view>
+      <view class="form-line" />
+      <view class="page-section">
+        <view class="page-section-demo switch-list">
+          <view class="switch-item">
+        推荐为优秀建议 :
+            <switch name="is_excellent" color="skyblue" />
+          </view>
+        </view>
+      </view>
+      <view class="form-line" />
+      <view class="page-section">
+        <view class="page-section-demo switch-list">
+          <view class="switch-item">
+        升级至精益专员 :
+            <switch name="is_difficult" color="blue" />
+          </view>
         </view>
       </view>
       <view class="page-section-btns">
@@ -89,6 +130,7 @@
         <view>
           <button type="primary" size="mini" formType="submit">同意</button></view>
       </view>
+      <view class="form-line" />
     </view>
   </form>
 </view>

@@ -11,27 +11,38 @@
     "pages/ranking/ranking",
     "pages/scores/scores",
     "pages/mylist/mylist",
-    "pages/mylist/mylistitems/mylistitems"
+    "pages/mylist/mylistitems/mylistitems",
+    "pages/excellent/excellent",
+    "pages/doubleAudit/doubleAudit",
+    "pages/doubleAudit/toBeDoubleAudit/toBeDoubleAudit",
+    "pages/difficult/difficult",
+    "pages/community/community"
   ],
   "window": {
     "defaultTitle": "合理化建议"
   },
   "tabBar": {
     "textColor": "#dddddd",
-    "selectedColor": "#49a9ee",
+    "selectedColor": "#1296db",
     "backgroundColor": "#ffffff",
     "items": [
       {
         "pagePath": "pages/index/index",
         "name": "首页",
-        "icon": "./img/home.png",
-        "activeIcon": "./img/home_a.png"
+        "icon": "./img/homeg.png",
+        "activeIcon": "./img/home.png"
+      },
+      {
+        "pagePath": "pages/community/community",
+        "name": "社区",
+        "icon": "./img/communityg.png",
+        "activeIcon": "./img/community.png"
       },
       {
         "pagePath": "pages/mine/mine",
         "name": "我的",
-        "icon": "./img/mine.png",
-        "activeIcon": "./img/mine_a.png"
+        "icon": "./img/mineg.png",
+        "activeIcon": "./img/mine.png"
       }
     ]
   }
