@@ -55,9 +55,11 @@ text-align: center;
 }
 
 .bg-w{
-background: snow;
+position: fixed;
 }
-
+.view-top{
+  padding-top: 1rem;
+}
 .bg-g{
 background: #E6F3F9;
 }

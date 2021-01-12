@@ -2,14 +2,16 @@
   <form onSubmit="onSubmit" onReset="onReset" enctype="multipart/form-data">
     <view class="page-section">
     <view>
-      <view a:if="{{getCheckItem[0].is_excellent_aft_ck}}" class="excel-line">
+      <view a:if="{{getCheckItem[0].is_excellent_aft_ck}}" class="excel-line1">
         <image mode="scaleToFill" src="http://192.168.18.126:18080/icons/excellentb.png" class="img" />
         <text class="txt">优秀建议</text>
+        
       </view>
-      <view a:if="{{getCheckItem[0].is_difficult_aft_ck }}" class="excel-line">
+      <view a:if="{{getCheckItem[0].is_difficult_aft_ck }}" class="excel-line1">
         <image mode="scaleToFill" src="http://192.168.18.126:18080/icons/difip.png" class="img" />
         <text class="txt">困难建议</text>
       </view>
+      <view a:if="{{getCheckItem[0].is_excellent_aft_ck||getCheckItem[0].is_difficult_aft_ck}}" class="form-line" />
       </view>
       <view class="row">
         <view class="row-title">发起时间 : {{getCheckItem[0].create_time}}</view>
@@ -42,13 +44,7 @@
         </view>
       </view>
       <view class="form-line" />
-      <!-- <view class="row">
-      <image class="image" onTap="onTap" mode="widthFix" src="{{src}}{{item.picture_of_problem}}" onError="imageError" onLoad="imageLoad" />
-      </view> -->
-        <!-- <image mode="scaleToFill" src="/img/1.jpg"/>  -->
-      <!-- <view class="row">
-        <view class="row-title">问题图片 : {{getCheckItem[0].picture_of_problem}}</view>
-      </view> -->
+      
       <view class="row">
         <view class="row-title">改善建议 : {{getCheckItem[0].proposal}}</view>
       </view>
@@ -88,7 +84,12 @@
       <view class="row">
         <view class="row-title">改善完成情况描述 : {{getCheckItem[0].description_after_improve}}</view>
       </view>
-      <view a:if={{getCheckItem[0].is_checked==0}}>
+      <view class="form-line" />
+      <view class="row" a:if="{{getCheckItem[0].is_excellent_aft_ck===1}}" >
+        <view class="row-title">优秀建议终审结果 : {{getCheckItem[0].desc_aft_db_audit}}</view>
+      </view>
+      <view class="form-line" />
+      <view a:if="{{getCheckItem[0].is_checked==0}}">
         <button type="primary" onTap="toCancle" data-x="{{getCheckItem[0].rp_no}}">撤销</button>
       </view>
       

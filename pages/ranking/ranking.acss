@@ -78,14 +78,15 @@ justify-content: center;
 text-align: center;
 }
 
-.bg-w{
-background: snow;
+.tofix{
+/* background: snow; */
 position: fixed;
-top:0rpx;
-z-index: 9999;
+width: 100%;
+/* top:0rpx;
+z-index: 9999; */
 }
 .tablerow{
-  padding-top:100rpx; 
+  padding-top:1rem; 
 }
 .bg-g{
 background: #E6F3F9;

@@ -23,26 +23,26 @@
 		<view class="table" >
     <view class="tr bg-w ">
       <view class="th1">序号</view>
-      <view class="th">发起日期</view>
-      <view class="th ">发起人</view>
-      <view class="th ">类型</view>
-      <view class="th ">状态</view>
+      <view class="th2">发起日期</view>
+      <view class="th3 ">发起人</view>
+      <view class="th4 ">状态</view>
+      <view class="th5 ">评审结果</view>
     </view>
     <view class="tablerow">
     <block a:for="{{listToBeChecked}}" >
       <view onTap="onItemClick" class="tr bg-g" a:if="{{index % 2 == 0}}" data-rpno="{{item.rp_no}}">
         <view class="td1">{{index+1}}</view>
-        <view class="td">{{item.create_time}}</view>
-        <view class="td">{{item.find_username}}</view>
-        <view class="td">{{item.improve_type}}</view>
-       <view class="td">{{item.handle_result==1?'已处理':item.is_checked==1?'已审核待处理':'待审核'}}</view>
+        <view class="td2">{{item.create_time}}</view>
+        <view class="td3">{{item.find_username}}</view>
+       <view class="td4">{{item.handle_result==1?'已处理':item.is_checked==1?'已审核待处理':'待审核'}}</view>
+        <view class="td5">{{item.desc_aft_db_audit}}</view>
       </view>
       <view onTap="onItemClick" class="tr" a:else  data-rpno="{{item.rp_no}}">
         <view class="td1">{{index+1}}</view>
-        <view class="td">{{item.create_time}}</view>
-        <view class="td">{{item.find_username}}</view>
-        <view class="td">{{item.improve_type}}</view>
-       <view class="td">{{item.handle_result==1?'已处理':item.is_checked==1?'已审核待处理':'待审核'}}</view>
+        <view class="td2">{{item.create_time}}</view>
+        <view class="td3">{{item.find_username}}</view>
+       <view class="td4">{{item.handle_result==1?'已处理':item.is_checked==1?'已审核待处理':'待审核'}}</view>
+        <view class="td5">{{item.desc_aft_db_audit}}</view>
       </view>
     </block>
       </view>

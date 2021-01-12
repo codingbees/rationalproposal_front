@@ -31,6 +31,18 @@
   display: flex;
   justify-content: space-around;
 }
+.txt{
+  font-weight: bold;
+  color: #008;
+  /* display: block; */
+}
+.excel-line1{
+  flex: 1;
+  padding: 20rpx;
+  /* padding-bottom: 20rpx; */
+  font-size: 28rpx;
+  
+}
 .image {
   background-color: white;
   width: 200rpx;
@@ -47,8 +59,8 @@
 
 .row-title {
   flex: 1;
-  padding-top: 10rpx;
-  padding-bottom: 10rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
   font-size: 28rpx;
   color: #000;
 }

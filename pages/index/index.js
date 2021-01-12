@@ -113,7 +113,7 @@ Page({
                     },
                     dataType: 'json',
                     success: (res) => {
-                      console.log('httpsuccess----',res)
+                      console.log('indexjs  httpsuccess----',res)
                       dd.setStorage({
                         key:'userInfo',
                         data:JSON.parse(res.data.result.userinfo)

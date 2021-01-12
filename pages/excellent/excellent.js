@@ -52,18 +52,11 @@ Page({
 
   },
   onItemClick(ev) {
-    console.log("ev is:")
-    console.log(ev.currentTarget.dataset.rpno);
-    if (this.data.userid != 'FL00026763' && this.data.userid != 'FL00000178' ) {
-      dd.showToast({
-        type: 'fail',
-        content: '该申请正在等待精益专员何雯审核。',
-        duration: 2500,
-      })
-      return
-    }
+    
+    
     dd.navigateTo({
-      url: '/pages/doubleAudit/toBeDoubleAudit/toBeDoubleAudit?no=' + ev.currentTarget.dataset.rpno
+      // url: '/pages/doubleAudit/toBeDoubleAudit/toBeDoubleAudit?no=' + ev.currentTarget.dataset.rpno
+      url: '/pages/mylist/mylistitems/mylistitems?no=' + ev.currentTarget.dataset.rpno
     })
   },
 

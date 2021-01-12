@@ -30,13 +30,14 @@ Page({
       data: {no : query.no},
       dataType: 'json',
       success: res => {
-        console.log('getCheckItem is:',res)
+        console.log('getCheckItem is:')
+        console.log(res)
         this.setData({getCheckItem : res.data.getCheckItem});
         this.setData({img : res.data.img});
         this.setData({img2 : res.data.img2});
       },
       fail: function(res) {
-        dd.alert({content: '发起失败，未知原因，请联系管理员'});
+        dd.alert({content: `获取数据失败：${JSON.stringify(res)}`});
       }
     });
     dd.getStorage({

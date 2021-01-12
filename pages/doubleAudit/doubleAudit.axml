@@ -28,7 +28,9 @@
       <view class="th ">申请优秀</view>
       <view class="th ">申请困难</view>
     </view>
+    <view class="view-top">
     <block a:for="{{listToBeChecked}}" >
+
       <view onTap="onItemClick" class="tr bg-g" a:if="{{index % 2 == 0}}" data-rpno="{{item.rp_no}}">
         <view class="td1">{{index+1}}</view>
         <view class="td">{{item.create_time}}</view>
@@ -36,14 +38,17 @@
         <view class="td">{{item.is_excellent?'是':'否'}}</view>
        <view class="td">{{item.is_difficult?'是':'否'}}</view>
       </view>
-      <view onTap="onItemClick" class="tr" a:else  data-rpno="{{item.rp_no}}">
+
+       <view onTap="onItemClick" class="tr" a:else  data-rpno="{{item.rp_no}}">
         <view class="td1">{{index+1}}</view>
         <view class="td">{{item.create_time}}</view>
         <view class="td">{{item.find_username}}</view>
         <view class="td">{{item.is_excellent?'是':'否'}}</view>
        <view class="td">{{item.is_difficult?'是':'否'}}</view>
-      </view>
+       </view>
+
     </block>
+      </view>
   </view>
 			<view class="listempty" a:if="{{getHandleListIsEmpty==true}}">
 					无待处理建议
