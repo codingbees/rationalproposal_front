@@ -31,13 +31,7 @@
         </view>
       </view>
       <view class="form-line" />
-      <!-- <view class="row">
-      <image class="image" onTap="onTap" mode="widthFix" src="{{src}}{{item.picture_of_problem}}" onError="imageError" onLoad="imageLoad" />
-      </view> -->
-        <!-- <image mode="scaleToFill" src="/img/1.jpg"/>  -->
-      <!-- <view class="row">
-        <view class="row-title">问题图片 : {{getCheckItem[0].picture_of_problem}}</view>
-      </view> -->
+
       <view class="row">
         <view class="row-title">改善建议 : {{getCheckItem[0].proposal}}</view>
       </view>
@@ -89,9 +83,23 @@
       <view class="page-section-btns">
         <view>
           <button type="default" size="mini" formType="reset">重置</button></view>
+          <view>
+          <button type="warn" size="mini" onTap="toSuspend">中止</button></view>
         <view>
           <button type="primary" size="mini" formType="submit">提交</button></view>
       </view>
+
     </view>
   </form>
+  <!-- 中止按钮弹窗 -->
+  <modal
+		show="{{showSuspendPOPUp}}"
+    showClose="{{false}}"
+    onButtonClick="confirmToSuspend"
+    buttons="{{buttons5}}"
+	>
+		<view slot="header">中止建议</view>
+		中止后将不可恢复，确定要中止此建议吗？
+	</modal>
+  
 </view>

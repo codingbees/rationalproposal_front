@@ -1,21 +1,6 @@
 <view class="page">
-<!-- bgImg="https://gw.alipayobjects.com/mdn/rms_ce4c6f/afts/img/A*OjyRRqjLM6MAAAAAAAAAAABkARQnAQ" -->
-    <!-- <card thumb="{{thumb}}"
-      title="{{username}}" 
-      subTitle="{{departments}}" 
-      action="我的积分" 
-      onActionClick="onActionClick" 
-      extraAction="我的兑换记录" 
-      onExtraActionClick="onExtraActionClick" 
-      bgImg="http://110.186.68.166:18901/icons/logo.png"
-      expand="{{expand3rd}}" 
-      onCardClick="toggle" 
-      /> -->
-      <!-- <card 
-      bgImg="http://110.186.68.166:18901/icons/logo.png"
-      /> -->
       <view>
-        <image mode="aspectFit" src="http://110.186.68.166:18901/icons/logo.png"/>
+        <image class="logo" mode="aspectFit" src="http://110.186.68.166:18901/icons/logo.png"/>
       </view>
     <view class="message" >
     <view>
@@ -25,7 +10,7 @@
       总积分：{{myScores.scores[0].total_scores==null?'0':myScores.scores[0].total_scores}}
     </view>
     <view>
-      已使用的分数：{{myScores.used_score[0].total==null?0:myScores.scores[0].total}}
+      已使用的分数：{{myScores.used_score[0].total==null?'0':myScores.used_score[0].total}}
     </view>
     <view>
       剩余分数：{{myScores.scores[0].total_scores-myScores.used_score[0].total}}
@@ -33,14 +18,13 @@
     <view>
       建议总数：{{myScores.scores[0].total_items}}
     </view>
-    
     </view>
-   
-
+    </br>
   <view class="table" a:if="{{myExchangeList.length!=0}}">
+    奖品兑换记录：
     <view class="tr bg-w">
       <view class="th1">序号</view>
-      <view class="th">申请日期</view>
+      <view class="th2">兑换日期</view>
       <view class="th ">奖品名称</view>
       <view class="th ">所用积分</view>
       <view class="th ">申请人</view>
@@ -48,21 +32,21 @@
     <block a:for="{{myExchangeList}}" >
       <view class="tr bg-g" a:if="{{index % 2 == 0}}">
         <view class="td1">{{index+1}}</view>
-        <view class="td">{{item.apply_date}}</view>
+        <view class="td2">{{item.apply_date}}</view>
         <view class="td">{{item.prize_name}}</view>
         <view class="td">{{item.score}}</view>
        <view class="td">{{item.apply_username}}</view>
       </view>
       <view class="tr" a:else>
         <view class="td1">{{index+1}}</view>
-        <view class="td">{{item.apply_date}}</view>
+        <view class="td2">{{item.apply_date}}</view>
         <view class="td">{{item.prize_name}}</view>
         <view class="td">{{item.score}}</view>
         <view class="td">{{item.apply_username}}</view>
       </view>
     </block>
   </view>
-  <view a:elseif class="message">
+  <view class="table" a:else class="message">
     您的奖品兑换记录为空
   </view>
 </view>

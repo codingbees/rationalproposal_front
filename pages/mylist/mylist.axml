@@ -5,7 +5,7 @@
         <view class="table">
           <view class="tr bg-w ">
             <view class="th1">序号</view>
-            <view class="th">发起日期</view>
+            <view class="th2">发起日期</view>
             <view class="th ">发起人</view>
             <view class="th ">类型</view>
             <view class="th ">状态</view>
@@ -14,14 +14,14 @@
             <block a:for="{{item.data}}" a:for-item="i">
               <view onTap="onListItemClick" class="tr bg-g" a:if="{{index % 2 == 0}}" data-rpno="{{i.rp_no}}">
                 <view class="td1">{{index+1}}</view>
-                <view class="td">{{i.create_time}}</view>
+                <view class="td2">{{i.create_time}}</view>
                 <view class="td">{{i.find_username}}</view>
                 <view class="td">{{i.improve_type}}</view>
                 <view class="td">{{i.handle_result==1?'已处理':i.is_checked==0?'待审核':i.audit_result==0?'已拒绝':'已审核待处理'}}</view>
               </view>
               <view onTap="onListItemClick" class="tr" a:else data-rpno="{{i.rp_no}}" >
                 <view class="td1">{{index+1}}</view>
-                <view class="td">{{i.create_time}}</view>
+                <view class="td2">{{i.create_time}}</view>
                 <view class="td">{{i.find_username}}</view>
                 <view class="td">{{i.improve_type}}</view>
                 <view class="td">{{i.handle_result==1?'已处理':i.is_checked==0?'待审核':i.audit_result==0?'已拒绝':'已审核待处理'}}</view>
@@ -29,21 +29,13 @@
             </block>
           </view>
         </view>
-        <!--<block a:for="{{item.data}}">
-        <list-item class="" index="{{item.rp_no}}" onClick="onListItemClick"><view class="tab-t" a:if="{{item.is_checked===0}}">
-              {{index+1}}.{{item.find_username}}在{{item.create_time}}发起了类型为“{{item.improve_type}}”的建议，当前状态：已发起，待审核</view>
-              <view class="tab-t" a:elif="{{item.is_checked===1 && item.audit_result ===0}}">{{index+1}}.{{item.find_username}}在{{item.create_time}}发起了类型为“{{item.improve_type}}”的建议，当前状态：已拒绝</view>
-              <view class="tab-t" a:elif="{{item.is_checked===1 && item.audit_result ===1 && item.handle_result ===0}}">
-              {{index+1}}.{{item.find_username}}在{{item.create_time}}发起了类型为“{{item.improve_type}}”的建议，当前状态：已审核通过，待处理, 分值{{item.scores}}分</view>
-              <view class="tab-t" a:else  >
-              {{index+1}}.{{item.find_username}}在{{item.create_time}}发起了类型为“{{item.improve_type}}”的建议，当前状态：已处理完成, 分值{{item.scores}}分</view>
-              </list-item></block> -->
+
       </tab-content>
       <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:elif="{{index === 1}}">
         <view class="table">
           <view class="tr bg-w ">
             <view class="th1">序号</view>
-            <view class="th">发起日期</view>
+            <view class="th2">发起日期</view>
             <view class="th ">发起人</view>
             <view class="th ">类型</view>
             <view class="th ">状态</view>
@@ -52,14 +44,14 @@
             <block a:for="{{item.data}}" a:for-item="i">
               <view onTap="onListItemClick" class="tr bg-g" a:if="{{index % 2 == 0}}" data-rpno="{{i.rp_no}}">
                 <view class="td1">{{index+1}}</view>
-                <view class="td">{{i.create_time}}</view>
+                <view class="td2">{{i.create_time}}</view>
                 <view class="td">{{i.find_username}}</view>
                 <view class="td">{{i.improve_type}}</view>
                 <view class="td">{{i.handle_result==1?'已处理':i.is_checked==0?'待审核':i.audit_result==0?'已拒绝':'已审核待处理'}}</view>
               </view>
               <view onTap="onListItemClick" class="tr" a:else data-rpno="{{i.rp_no}}">
                 <view class="td1">{{index+1}}</view>
-                <view class="td">{{i.create_time}}</view>
+                <view class="td2">{{i.create_time}}</view>
                 <view class="td">{{i.find_username}}</view>
                 <view class="td">{{i.improve_type}}</view>
                 <view class="td">{{i.handle_result==1?'已处理':i.is_checked==0?'待审核':i.audit_result==0?'已拒绝':'已审核待处理'}}</view>
@@ -67,19 +59,13 @@
             </block>
           </view>
         </view>
-        <!-- <block a:for="{{item.data}}">
-          <list-item index="{{item.rp_no}}" onClick="onListItemClick">
-            <view class="tab-t" a:if="{{item.is_checked===0}}">
-              {{index+1}}.{{item.find_username}}在{{item.create_time}}发起了类型为“{{item.improve_type}}”的建议，当前状态：已发起，待审核
-            </view>
-          </list-item>
-        </block> -->
+
       </tab-content>
       <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:elif="{{index === 2}}">
       <view class="table">
           <view class="tr bg-w ">
             <view class="th1">序号</view>
-            <view class="th">发起日期</view>
+            <view class="th2">发起日期</view>
             <view class="th ">发起人</view>
             <view class="th ">类型</view>
             <view class="th ">状态</view>
@@ -88,14 +74,14 @@
             <block a:for="{{item.data}}" a:for-item="i">
               <view onTap="onListItemClick" class="tr bg-g" a:if="{{index % 2 == 0}}" data-rpno="{{i.rp_no}}">
                 <view class="td1">{{index+1}}</view>
-                <view class="td">{{i.create_time}}</view>
+                <view class="td2">{{i.create_time}}</view>
                 <view class="td">{{i.find_username}}</view>
                 <view class="td">{{i.improve_type}}</view>
                 <view class="td">{{i.handle_result==1?'已处理':i.is_checked==0?'待审核':i.audit_result==0?'已拒绝':'已审核待处理'}}</view>
               </view>
               <view onTap="onListItemClick" class="tr" a:else data-rpno="{{i.rp_no}}">
                 <view class="td1">{{index+1}}</view>
-                <view class="td">{{i.create_time}}</view>
+                <view class="td2">{{i.create_time}}</view>
                 <view class="td">{{i.find_username}}</view>
                 <view class="td">{{i.improve_type}}</view>
                 <view class="td">{{i.handle_result==1?'已处理':i.is_checked==0?'待审核':i.audit_result==0?'已拒绝':'已审核待处理'}}</view>
@@ -103,19 +89,13 @@
             </block>
           </view>
         </view>
-        <!-- <block a:for="{{item.data}}">
-          <list-item index="{{item.rp_no}}" onClick="onListItemClick">
-            <view class="tab-t" a:if="{{item.is_checked===1 && item.audit_result ===1 && item.handle_result ===0}}">
-              {{index+1}}.{{item.find_username}}在{{item.create_time}}发起了类型为“{{item.improve_type}}”的建议，当前状态：已审核通过，待处理待处理, 分值{{item.scores}}分
-            </view>
-          </list-item>
-        </block> -->
+
       </tab-content>
       <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:elif="{{index === 3}}">
       <view class="table">
           <view class="tr bg-w ">
             <view class="th1">序号</view>
-            <view class="th">发起日期</view>
+            <view class="th2">发起日期</view>
             <view class="th ">发起人</view>
             <view class="th ">类型</view>
             <view class="th ">状态</view>
@@ -124,14 +104,14 @@
             <block a:for="{{item.data}}" a:for-item="i">
               <view onTap="onListItemClick" class="tr bg-g" a:if="{{index % 2 == 0}}" data-rpno="{{i.rp_no}}">
                 <view class="td1">{{index+1}}</view>
-                <view class="td">{{i.create_time}}</view>
+                <view class="td2">{{i.create_time}}</view>
                 <view class="td">{{i.find_username}}</view>
                 <view class="td">{{i.improve_type}}</view>
                 <view class="td">{{i.handle_result==1?'已处理':i.is_checked==0?'待审核':i.audit_result==0?'已拒绝':'已审核待处理'}}</view>
               </view>
               <view onTap="onListItemClick" class="tr" a:else data-rpno="{{i.rp_no}}">
                 <view class="td1">{{index+1}}</view>
-                <view class="td">{{i.create_time}}</view>
+                <view class="td2">{{i.create_time}}</view>
                 <view class="td">{{i.find_username}}</view>
                 <view class="td">{{i.improve_type}}</view>
                 <view class="td">{{i.handle_result==1?'已处理':i.is_checked==0?'待审核':i.audit_result==0?'已拒绝':'已审核待处理'}}</view>
@@ -139,19 +119,13 @@
             </block>
           </view>
         </view>
-        <!-- <block a:for="{{item.data}}">
-          <list-item index="{{item.rp_no}}" onClick="onListItemClick">
-            <view class="tab-t" a:if="{{item.is_checked===1 && item.audit_result ===0}}">
-              {{index+1}}.{{item.find_username}}在{{item.create_time}}发起了类型为“{{item.improve_type}}”的建议，当前状态：已拒绝
-            </view>
-          </list-item>
-        </block> -->
+
       </tab-content>
       <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:elif="{{index === 4}}">
       <view class="table">
           <view class="tr bg-w ">
             <view class="th1">序号</view>
-            <view class="th">发起日期</view>
+            <view class="th2">发起日期</view>
             <view class="th ">发起人</view>
             <view class="th ">类型</view>
             <view class="th ">状态</view>
@@ -160,14 +134,14 @@
             <block a:for="{{item.data}}" a:for-item="i">
               <view onTap="onListItemClick" class="tr bg-g" a:if="{{index % 2 == 0}}" data-rpno="{{i.rp_no}}">
                 <view class="td1">{{index+1}}</view>
-                <view class="td">{{i.create_time}}</view>
+                <view class="td2">{{i.create_time}}</view>
                 <view class="td">{{i.find_username}}</view>
                 <view class="td">{{i.improve_type}}</view>
                 <view class="td">{{i.handle_result==1?'已处理':i.is_checked==0?'待审核':i.audit_result==0?'已拒绝':'已审核待处理'}}</view>
               </view>
               <view onTap="onListItemClick" class="tr" a:else data-rpno="{{i.rp_no}}">
                 <view class="td1">{{index+1}}</view>
-                <view class="td">{{i.create_time}}</view>
+                <view class="td2">{{i.create_time}}</view>
                 <view class="td">{{i.find_username}}</view>
                 <view class="td">{{i.improve_type}}</view>
                 <view class="td">{{i.handle_result==1?'已处理':i.is_checked==0?'待审核':i.audit_result==0?'已拒绝':'已审核待处理'}}</view>
@@ -175,13 +149,6 @@
             </block>
           </view>
         </view>
-        <!-- <block a:for="{{item.data}}">
-          <list-item index="{{item.rp_no}}" onClick="onListItemClick">
-            <view class="tab-t" a:if="{{item.is_checked===1 && item.audit_result ===1 && item.handle_result ===1}}">
-              {{index+1}}.{{item.find_username}}在{{item.create_time}}发起了类型为“{{item.improve_type}}”的建议，当前状态：已处理完成, 分值{{item.scores}}分
-            </view>
-          </list-item>
-        </block> -->
       </tab-content>
     </block>
   </tabs>

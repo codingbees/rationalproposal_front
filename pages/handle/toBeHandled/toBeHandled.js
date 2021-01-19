@@ -12,6 +12,12 @@ Page({
     fileqty : 0,
     filename:'',
     fileupdateqty: 0,
+    showSuspendPOPUp:false,
+    
+    buttons5: [
+      { text: '取消' },
+      { text: '确定', extClass: 'buttonBold' },
+    ],
   },
   handlerChange(e) {
     this.setData({
@@ -104,6 +110,27 @@ Page({
       },
     });
   },
+  toSuspend(){
+    this.setData({
+      showSuspendPOPUp:true
+    })
+  },
+  confirmToSuspend(e){
+    if(e.currentTarget.dataset.index === 1){
+      dd.redirectTo({
+        url:'/pages/handle/suspend/suspend?no='+ this.data.no
+      })
+      
+    //   dd.redirectTo({
+    //   url: '/pages/check/reject/reject?no=' + this.data.no
+    // })
+    }
+
+    this.setData({
+      showSuspendPOPUp: false,
+    });
+  },
+  
   onSubmit: function(e) {
     e.detail.value.picture_after_improve = this.data.filename;
      var formdata = e.detail.value;

@@ -16,7 +16,8 @@
     "pages/doubleAudit/doubleAudit",
     "pages/doubleAudit/toBeDoubleAudit/toBeDoubleAudit",
     "pages/difficult/difficult",
-    "pages/community/community"
+    "pages/community/community",
+    "pages/handle/suspend/suspend"
   ],
   "window": {
     "defaultTitle": "合理化建议"

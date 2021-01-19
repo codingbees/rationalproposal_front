@@ -15,8 +15,7 @@ Page({
     dd.getStorage({
       key:'userInfo',
       success:(res) => {
-        console.log("userInfo is")
-        console.log(res)
+
         this.setData({userid : res.data.jobnumber});
         this.setData({partid : res.data.department});
         this.setData({username : res.data.name});
@@ -29,8 +28,7 @@ Page({
               headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
               dataType: 'json',
               success: resp => {
-                console.log("res in getCheckList")
-                console.log(resp)
+
                 if(resp.data.arraytoBeChecked.length == 0){
                   this.setData({ getCheckListIsEmpty: true });
                 }else{
@@ -56,27 +54,5 @@ Page({
       url: '/pages/check/toBeChecked/toBeChecked?no='+ev.currentTarget.dataset.rpno
     })
   },
-  // onSwitchClick() {
-  //   this.setData({
-  //     changeSwitch: !this.data.changeSwitch,
-  //   });
-  //   my.alert({
-  //     content: 'switch changed',
-  //   });
-  // },
-  // onCheckClick() {
-  //   this.setData({
-  //     changeCheckbox: !this.data.changeCheckbox,
-  //   });
-  //   my.alert({
-  //     content: 'checkbox changed',
-  //   });
-  // },
-  // onCapsuleClick() {
-  //   my.alert({
-  //     content: 'capsule button click',
-  //   });
-  // },
 
-  
 });

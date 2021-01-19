@@ -2,7 +2,7 @@ let app = getApp()
 
 Page({
   data: {
-    thumb: 'https://gw.alipayobjects.com/mdn/rms_ce4c6f/afts/img/A*XMCgSYx3f50AAAAAAAAAAABkARQnAQ',
+    
     username:'',
     position:'',
     departments:'',
@@ -11,9 +11,6 @@ Page({
     expand3rd:false,
     showMyMessage: false,
     showMyExchange: false,
-  },
-  onReset() {
-    
   },
   onLoad(){
     dd.getStorage({
@@ -47,20 +44,4 @@ Page({
       }
     });
   },
-  onActionClick() {
-    this.setData({
-      showMyMessage: !this.data.showMyMessage,
-    });
-  },
-  onExtraActionClick() {
-    this.setData({
-      showMyExchange: !this.data.showMyExchange,
-    });
-  },
-  toggle() {
-    this.setData({
-      expand3rd: !this.data.expand3rd,
-    });
-  },
-
 });
