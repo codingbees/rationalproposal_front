@@ -49,10 +49,12 @@ Page({
           data: { userid: this.data.userid },
           dataType: 'json',
           success: res => {
-            console.log(this.data.userid)
+            
             console.log("res in getAuditor")
             console.log(res)
             this.setData({ arrayCheck: res.data.arrayAuditor });
+            console.log("res in arrayAuditorJobNo")
+            console.log(res.data.arrayAuditorJobNo)
             this.setData({ arrayAuditorJobNo: res.data.arrayAuditorJobNo });
           },
           fail: function (res) {
@@ -117,30 +119,18 @@ Page({
         dd.alert({ content: '获取改善类型失败，请联系管理员' });
       }
     });
-    //获取审核人
-
 
     dd.setNavigationBar({
       title: '发起建议'
     });
   },
-  // selectDate(){
-  //   dd.datePicker({
-  //     format: 'yyyy-MM-dd',
-  //     success: (res) => {
-  //       this.setData({happenDate : res.date})
-  //     },
-  //   });
-  // },
+
   selectFile() {
     var _this = this;
     dd.chooseImage({
       sourceType: ['camera', 'album'],
       count: 9,
       success: res => {
-
-        console.log("chooseImage res is:")
-        console.log(res)
         var paths = new Array();
         for (let i = 0; i < res.filePaths.length; i++) {
           paths[i] = (res.filePaths && res.filePaths[i]) || (res.apFilePaths && res.apFilePaths[i]);
@@ -156,14 +146,9 @@ Page({
               let resp = JSON.parse(res.data);
               _this.setData({
 
-                filename : _this.data.filename+resp.fileName,
-                
+                filename : _this.data.filename+resp.fileName,        
               })
-              // _this.data.picNames[i]= resp.picName;
-              // console.log("file names are:",i)
-              // console.log(_this.data.filename)
-              // console.log(resp.picName)
-              // console.log(_this.data.picNames[i])
+
             },
             fail: function (res) {
               dd.alert({ title: `上传失败：${JSON.stringify(res)}` });
@@ -173,31 +158,7 @@ Page({
       },
     });
   },
-  // leader(){
-  //   dd.httpRequest({
-  //     url: app.globalData.serverUrl+'/getLeaderList',
-  //     method: 'POST',
-  //     headers:{'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
-  //     dataType: 'json',
-  //     success: res => {
-  //       console.log(res.data)
-  //       dd.chooseUserFromList({
-  //           title: '选择快反主持人', //标题
-  //           users: res.data.leaders,//一组员工userid
-  //           isShowCompanyName: true,   //true|false，默认为 false
-  //           success:resp => {
-  //             this.setData({leaderName:resp[0].name});
-  //             this.setData({leaderId:resp[0].userId});
 
-  //           },
-  //           fail:function(err){}
-  //       });
-  //     },
-  //     fail: function(res) {
-  //       dd.alert({content: '发起失败，未知原因，请联系管理员'});
-  //     }
-  //   });
-  // },
   onSubmit: function (e) {
     e.detail.value.department = this.data.arrayDep[this.data.indexDep];
     e.detail.value.workshop = this.data.array[this.data.index];
@@ -263,12 +224,13 @@ Page({
       data: { selectDep: _this.data.arrayDep[e.detail.value] },
       dataType: 'json',
       success: function (res) {
-        console.log("res from getWorkshop")
-        console.log(res)
+        
         _this.setData({ array: res.data.array });
         _this.setData({ arrayLine: res.data.arrayLine });
-        if (_this.data.arrayAuditorJobNo[0] != 'FL00026763') {
-          //onload时已定义若发起人是班长则审核人为何雯。此处若审核人为何雯，则不改审核人
+        console.log(_this.data.arrayAuditorJobNo[0])
+        console.log(res.data.leanUserlist[0])
+        if (_this.data.arrayAuditorJobNo[0] != res.data.leanUserlist[0].ding_user_id) {
+          //onload时已定义若发起人是班长则审核人为精益管理员。此处若审核人为精益管理员，则不改审核人
           _this.setData({ arrayCheck: res.data.arrayAuditor });
           _this.setData({ arrayAuditorJobNo: res.data.arrayAuditorJobNo });
         }
@@ -293,7 +255,9 @@ Page({
         console.log("res from getline")
         console.log(res)
         _this.setData({ arrayLine: res.data.arrayLine });
-        if (_this.data.arrayAuditorJobNo[0] != 'FL00026763') {
+        console.log(_this.data.arrayAuditorJobNo[0])
+        console.log(res.data.leanUserlist[0])
+        if (_this.data.arrayAuditorJobNo[0] != res.data.leanUserlist[0].ding_user_id) {
           //onload时已定义若发起人是班长则审核人为何雯。此处若审核人为何雯，则不改审核人
           _this.setData({ arrayCheck: res.data.arrayAuditor });
           _this.setData({ arrayAuditorJobNo: res.data.arrayAuditorJobNo });

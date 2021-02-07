@@ -21,26 +21,29 @@
     </view>
     </br>
   <view class="table" a:if="{{myExchangeList.length!=0}}">
+  <view class="table">
+  
     奖品兑换记录：
+  </view>
     <view class="tr bg-w">
       <view class="th1">序号</view>
       <view class="th2">兑换日期</view>
-      <view class="th ">奖品名称</view>
-      <view class="th ">所用积分</view>
+      <view class="th2 ">奖品名称</view>
+      <view class="th ">分值</view>
       <view class="th ">申请人</view>
     </view>
     <block a:for="{{myExchangeList}}" >
       <view class="tr bg-g" a:if="{{index % 2 == 0}}">
         <view class="td1">{{index+1}}</view>
         <view class="td2">{{item.apply_date}}</view>
-        <view class="td">{{item.prize_name}}</view>
+        <view class="td2">{{item.prize_name}}</view>
         <view class="td">{{item.score}}</view>
        <view class="td">{{item.apply_username}}</view>
       </view>
       <view class="tr" a:else>
         <view class="td1">{{index+1}}</view>
         <view class="td2">{{item.apply_date}}</view>
-        <view class="td">{{item.prize_name}}</view>
+        <view class="td2">{{item.prize_name}}</view>
         <view class="td">{{item.score}}</view>
         <view class="td">{{item.apply_username}}</view>
       </view>

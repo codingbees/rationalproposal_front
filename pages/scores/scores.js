@@ -12,7 +12,9 @@ Page({
     selectScore:'',
     selectPrize:'',
     userid:'',
-    username:''
+    username:'',
+    totalScore:0,
+    usedScore:0
   },
   onLoad() {
     dd.getStorage({
@@ -20,28 +22,29 @@ Page({
       success:(res) => {
         this.setData({userid : res.data.jobnumber});
         this.setData({username : res.data.name});
+        dd.httpRequest({
+          url: app.globalData.serverUrl+'/check/getPrizeList',
+          method: 'POST',
+          dataType: 'json',
+          data:{userid:res.data.jobnumber},
+          success: (resp) => {
+            console.log('getPrizeList')
+            console.log(resp)
+          this.setData({
+            prize : resp.data.PrizeList,
+            totalScore:resp.data.totalScore,
+            usedScore:resp.data.usedScore,
+          });
+          },
+          fail: (resp) => {
+            dd.alert({content: JSON.stringify(resp)});
+          },
+         });
       },
       fail:function(res){
         dd.alert({content:res.errorMessage})
       }
     });
-    dd.httpRequest({
-                    url: app.globalData.serverUrl+'/check/getPrizeList',
-                    method: 'POST',
-                    dataType: 'json',
-                    success: (res) => {
-                      console.log('getPrizeList res is:')
-                      console.log('success----',res);
-                    this.setData({prize : res.data.PrizeList});
-                    },
-                    fail: (res) => {
-                      console.log("httpRequestFail---",res)
-                      dd.alert({content: JSON.stringify(res)});
-                    },
-                    // complete: (res) => {
-                    //     dd.hideLoading();
-                    // }
-                });
   },
   toExchange(e) {
     console.log("event in dataattr is :")
@@ -57,56 +60,54 @@ Page({
   },
  
   onButtonClick5(e) {
-    // const { target: { dataset } } = e;
-    if(e.currentTarget.dataset.index==1){
-      console.log("主操作")
-      console.log("this.data.username")
-      console.log(this.data.username)
-      console.log("this.data.selectPrize")
+    console.log('this.data.selectPrize')
       console.log(this.data.selectPrize)
-      
+    if(e.currentTarget.dataset.index==1){
+      //分值不足的情况
+      if(this.data.selectScore>this.data.totalScore-this.data.usedScore){
+        this.setData({modalOpened5: false});
+        dd.alert({
+          content:'您当前可用积分为：'+(this.data.totalScore-this.data.usedScore)+'分，分值不足'
+        })
+        return 
+      }
 
+      
       dd.httpRequest({
-                    url: app.globalData.serverUrl+'/check/toExchangePrize',
-                    method: 'POST',
-                    data:{
-                      requestScore:this.data.selectScore,
-                      requestUserId:this.data.userid,
-                      requestUserName: this.data.username,
-                      selectPrizeName:this.data.selectPrize,
-                      selectPrizeIndex:this.data.selectPrizeIndex
-                    },
-                    dataType: 'json',
-                    success: (res) => {
-                      console.log('getPrizeList res is:')
-                      console.log('success----',res);
-                    this.setData({modalOpened5: false,});
-                    if(res.data.code==0){
-                        dd.alert({content: "申请失败。您的总积分为"+res.data.total+"分，已使用"+res.data.used+"分，剩余"+res.data.restscore+"分，需要"+res.data.score+"分，分值不足。"});
-                    }else if(res.data.code==200){
-                      dd.alert({content: "恭喜您！申请成功，获取奖品请联系你的班长或你所在车间的精益专员。\r 您的总积分为"+res.data.total+"分，已使用"+res.data.used+"分，本次使用"+res.data.score+"分，剩余"+res.data.restscore+"分。"});
-                    }
-                    },
-                    fail: (res) => {
-                      console.log("httpRequestFail---",res)
-                      // dd.alert({content: JSON.stringify(res)});
-                      dd.alert({content: "申请失败，请检查您的积分是否足够或联系管理员。"});
-                      this.setData({modalOpened5: false,});
-                    },
-                    // complete: (res) => {
-                    //     dd.hideLoading();
-                    // }
+      url: app.globalData.serverUrl+'/check/toExchangePrize',
+      method: 'GET',
+      data:{
+        score:this.data.selectScore,
+        apply_userid:this.data.userid,
+        apply_username: this.data.username,
+        prize_name:this.data.selectPrize,
+        prizeid:this.data.selectPrizeIndex
+      },
+      dataType: 'json',
+      success: (res) => {
+        this.setData({
+          modalOpened5: false,
+          usedScore:this.data.usedScore+this.data.selectScore
+        });
+        dd.alert({content: "恭喜！申请奖品成功，请联系你的班长或你所在车间的精益专员领取。"});
+        
+      },
+      fail: (res) => {
+        console.log("httpRequestFail---",res)
+        // dd.alert({content: JSON.stringify(res)});
+        dd.alert({content: "申请失败，请检查您的积分是否足够或联系管理员。"});
+        this.setData({modalOpened5: false,});
+      },
+      complete: (res) => {
+          dd.hideLoading();
+      }
                 });
     }else{
        this.setData({
       modalOpened5: false,
     }); 
     }
-    
-    // my.alert({
-    //   title: `点击了：${JSON.stringify(dataset)}`,
-    //   buttonText: '关闭',
-    // });
+
   },
  
 });

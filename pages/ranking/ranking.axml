@@ -14,18 +14,12 @@
   <tabs tabs="{{tabs}}" tabsName="activeTab" onTabClick="handleTabClick" onChange="handleTabChange" onPlusClick="handlePlusClick" activeTab="{{activeTab}}" showPlus="{{hasPlus}}" swipeable="{{false}}" capsule="{{typeCapsule}}" hasSubTitle="{{typeHasSubTitle}}" tabBarUnderlineWidth="20px">
     <block a:for="{{tabs}}">
       <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:if="{{index === 0}}">
-        <!--<block a:for="{{item.RankingList}}"><list-item class="" index="{{item.index}}" onClick="onListItemClick"><view class="tab-t">
-              第{{index+1}}名：{{item.find_username}}，{{item.find_userid}}，{{item.total_items}}条，{{item.total_scores?item.total_scores:0}}分。</view></list-item></block> -->
-        <!--<view class="table"> -->
-        <view class="tofix">
-
         <view class="tr bg-w ">
           <view class="th1">排名</view>
           <view class="th">发起人</view>
           <view class="th ">部门</view>
           <view class="th ">建议条数</view>
           <view class="th ">总分</view>
-        </view>
         </view>
         <view class="tablerow">
           <block a:for="{{item.RankingList}}" a:for-item="i">
@@ -47,13 +41,6 @@
         </view>
       </tab-content>
       <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:elif="{{index === 1}}">
-        <!-- <block a:for="{{item.RankingList}}">
-          <list-item class="" index="{{item.index}}" onClick="onListItemClick">
-            <view class="tab-t">
-              第{{index+1}}名：{{item.workshop}}，{{item.total_items}}条，{{item.total_scores}}分。
-            </view>
-          </list-item>
-        </block> -->
         <view class="tr bg-w ">
           <view class="th1">排名</view>
           <view class="th">车间</view>

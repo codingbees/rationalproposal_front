@@ -3,7 +3,7 @@ let app = getApp()
 
 Page({
   data: {
-    getCheckItem: [],
+    getCheckItem: {},
     handlers: [],
     indexHandler: 0,
     no: '',
@@ -29,7 +29,7 @@ Page({
       url: app.globalData.serverUrl + '/check/getHandleItem',
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-      data: { no: query.no },
+      data: { rp_no: query.no },
       dataType: 'json',
       success: res => {
         console.log(res)
@@ -124,8 +124,8 @@ Page({
   },
   onSubmit: function (e) {
     e.detail.value.picture_after_improve = this.data.filename;
-    console.log('e in double submit is')
-    console.log(e)
+    e.detail.value.id = this.data.getCheckItem.id;
+    
     var formdata = e.detail.value;
     if(formdata.handler_username==null||"" == formdata.handler_username ||formdata.handler_userid==null||"" == formdata.handler_userid){
           dd.showToast({ content: '请填写处理人信息！' })
@@ -138,9 +138,11 @@ Page({
     if (e.detail.value.is_difficult_aft_ck) {
       e.detail.value.is_difficult_aft_ck = 1
     } else { e.detail.value.is_difficult_aft_ck = 0 }
+    
     if (e.detail.value.is_excellent_aft_ck) {
       e.detail.value.is_excellent_aft_ck = 1
     } else { e.detail.value.is_excellent_aft_ck = 0 }
+
     dd.httpRequest({
       url: app.globalData.serverUrl + '/check/submitDoubleAudit?rp_no=' + this.data.no,
       method: 'POST',
@@ -148,16 +150,12 @@ Page({
       data: e.detail.value,
       dataType: 'json',
       success: function (res) {
-        console.log("res in success")
-        console.log(res)
         dd.showToast({
           type: 'success',
           content: "已成功提交",
           duration: 1000
         });
-        // dd.redirectTo({
-        //     url:'/pages/handle/handle'  
-        // })
+
       },
       fail: function (res) {
         dd.alert({ content: '发起失败，未知原因，请联系管理员' });
@@ -170,15 +168,7 @@ Page({
     });
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
   },
-  imageError(e) {
-    console.log('imageError加载错误', e.detail.errMsg);
-  },
-  onTap(e) {
-    console.log('image 发生 tap 事件', e);
-  },
-  imageLoad(e) {
-    console.log('image 加载成功', e);
-  },
+
 });
 
 

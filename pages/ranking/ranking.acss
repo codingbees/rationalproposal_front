@@ -78,16 +78,6 @@ justify-content: center;
 text-align: center;
 }
 
-.tofix{
-/* background: snow; */
-position: fixed;
-width: 100%;
-/* top:0rpx;
-z-index: 9999; */
-}
-.tablerow{
-  padding-top:1rem; 
-}
 .bg-g{
 background: #E6F3F9;
 }

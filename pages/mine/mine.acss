@@ -16,9 +16,13 @@ button + button {
 }
 .table {
   margin-top: 30rpx;
+  margin-bottom: 30rpx;
 border: 0px solid darkgray;
 background-color: #fff;
 font-size: 14px;
+}
+.record{
+  margin: 10rpx;
 }
 .tr {
 display: flex;
@@ -69,7 +73,7 @@ display: flex;
 height: 1rem;
 align-items: center;
 }
-.th1 {
+.th2 {
 width: 30%;
 justify-content: center;
 background: #3366FF;

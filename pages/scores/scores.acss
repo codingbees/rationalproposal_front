@@ -11,8 +11,8 @@
 
 .fixed-wrap{
   /* height: 116rpx; */
-  background-color: #eee;
-  position: fixed;
+  /* background-color: #eee;
+  position: fixed; */
   /* top: 100; */
 
   z-index: 2000;
@@ -22,7 +22,7 @@
   flex-wrap: wrap;
   /* width: 750rpx; */
   /* flex-wrap: wrap; */
-  padding: 100rpx 22rpx;
+  padding: 4rpx 22rpx;
   background-color: #eee;
   border-radius: 15rpx;
   justify-content: space-between;
@@ -31,7 +31,6 @@
 .prizeitem{
   display: inline-block;
   width: 300rpx;
-  height: 450rpx;
   background-color: white;
   margin-bottom: 20rpx;
   padding: 0 20rpx;
@@ -45,13 +44,9 @@
 
 }
 
-.text1{
-  padding: 20rpx 0rpx;
-  font-size: 32rpx;
+.remark2{
+  
+  font-size: 30rpx;
   color: rgb(65, 65, 175);
 }
-.text2{
-  display: inline-block;
-  padding: 10rpx;
-  font-size: 30rpx;
-}
+
