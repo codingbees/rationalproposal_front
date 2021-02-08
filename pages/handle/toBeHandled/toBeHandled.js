@@ -3,7 +3,7 @@ let app = getApp()
 
 Page({
   data: {
-    getCheckItem:[],
+    getCheckItem:{},
     handlers:[],
     indexHandler:0,
     no:'',
@@ -25,16 +25,18 @@ Page({
     });
   },
   onLoad(query) {
+    console.log(query)
     this.setData({
-      no: query.no,
+      no: query.rp_no,
     });
     dd.httpRequest({
       url: app.globalData.serverUrl+'/check/getHandleItem',
       method: 'POST',
       headers:{'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
-      data: {no : query.no},
+      data: {rp_no : query.rp_no},
       dataType: 'json',
       success: res => {
+        console.log('res is')
         console.log(res)
         this.setData({getCheckItem : res.data.getCheckItem});
         this.setData({img : res.data.img});

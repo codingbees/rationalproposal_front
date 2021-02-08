@@ -53,9 +53,9 @@ Page({
   },
   onItemClick(ev) {
     console.log("ev is:")
-    console.log(ev.currentTarget.dataset.rpno);
+    console.log(ev);
     dd.navigateTo({
-      url: '/pages/handle/toBeHandled/toBeHandled?no='+ev.currentTarget.dataset.rpno
+      url: '/pages/handle/toBeHandled/toBeHandled?rp_no='+ev.currentTarget.dataset.rpno
     })
   },
   
