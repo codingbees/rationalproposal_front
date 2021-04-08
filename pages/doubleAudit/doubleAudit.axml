@@ -23,7 +23,7 @@
 		<view class="table" >
     <view class="tr bg-w">
       <view class="th1">序号</view>
-      <view class="th">发起日期</view>
+      <view class="th2">发起日期</view>
       <view class="th ">发起人</view>
       <view class="th ">申请优秀</view>
       <view class="th ">申请困难</view>
@@ -33,7 +33,7 @@
 
       <view onTap="onItemClick" class="tr bg-g" a:if="{{index % 2 == 0}}" data-rpno="{{item.rp_no}}">
         <view class="td1">{{index+1}}</view>
-        <view class="td">{{item.create_time}}</view>
+        <view class="td2">{{item.create_time}}</view>
         <view class="td">{{item.find_username}}</view>
         <view class="td">{{item.is_excellent?'是':'否'}}</view>
        <view class="td">{{item.is_difficult?'是':'否'}}</view>
@@ -41,7 +41,7 @@
 
        <view onTap="onItemClick" class="tr" a:else  data-rpno="{{item.rp_no}}">
         <view class="td1">{{index+1}}</view>
-        <view class="td">{{item.create_time}}</view>
+        <view class="td2">{{item.create_time}}</view>
         <view class="td">{{item.find_username}}</view>
         <view class="td">{{item.is_excellent?'是':'否'}}</view>
        <view class="td">{{item.is_difficult?'是':'否'}}</view>

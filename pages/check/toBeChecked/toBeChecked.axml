@@ -1,6 +1,12 @@
 <view class="dyt-list" style="position: relative;">
   <form onSubmit="onSubmit" onReset="onReset" enctype="multipart/form-data">
     <view class="page-section">
+    <view style="display:none">
+        <input onBlur="bindTextAreaBlur" name="auditor_username" value="{{getCheckItem[0].auditor_username}}"  />
+      </view>
+      <view style="display:none">
+        <input onBlur="bindTextAreaBlur" name="auditor_userid" value="{{getCheckItem[0].auditor_userid}}"  />
+      </view>
       <view class="row">
         <view class="row-title">发起时间 : {{getCheckItem[0].create_time}}</view>
       </view>
@@ -68,7 +74,7 @@
       <!--<view class="page-section"><picker onChange="scoreChange" name="scores" value="{{indexScore}}" range="{{scores}}"><view class="row"><view class="row-title">分值：</view><view class="row-extra">当前选择：{{scores[indexScore]}}分</view></view></picker></view> -->
       <!-- 2020-11-26 按何雯要求，凡是提交精益的的建议，处理人由精益重新自由选取，不再限制为原发起人的班长 -->
       <view>
-        <view a:if="{{userjobnumber=='FL00000178'||userjobnumber=='FL00026763'}}">
+        <view a:if="{{userjobnumber=='FL00000178'||userjobnumber==leanManagerId}}">
           <view class="row">
             <view class="row-title">
               <view class="han inputc">
@@ -114,10 +120,18 @@
         </view>
       </view>
       <view class="form-line" />
-      <view class="page-section">
+      <!-- <view class="page-section">
         <view class="page-section-demo switch-list">
           <view class="switch-item">
         升级至精益专员 :
+            <switch name="is_difficult" color="blue" />
+          </view>
+        </view>
+      </view> -->
+      <view class="page-section">
+        <view class="page-section-demo switch-list">
+          <view class="switch-item">
+        升级至部门主管 :
             <switch name="is_difficult" color="blue" />
           </view>
         </view>
@@ -128,7 +142,7 @@
         <view>
           <button type="warn" size="mini" onTap="reject">拒绝</button></view>
         <view>
-          <button type="primary" size="mini" formType="submit">同意</button></view>
+          <button type="primary" size="mini" formType="submit">提交</button></view>
       </view>
       <view class="form-line" />
     </view>

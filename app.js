@@ -16,7 +16,7 @@ App({
     //serverUrl:'http://125.124.144.5:8888/app'
     corpId:'ding1410adc97eed08c335c2f4657eb6378f',
     //绵阳
-    // serverUrl:'http://192.168.110.249/app'
+    // serverUrl:'http://192.168.110.249:82/app'
     serverUrl:'http://110.186.68.166:18900/app'
     //湖南
     //serverUrl:'https://hnbiqs.fulinpm.com:8125/app'

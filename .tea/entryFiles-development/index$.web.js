@@ -42,3 +42,4 @@ require('../../pages/doubleAudit/toBeDoubleAudit/toBeDoubleAudit?hash=a10f9ecb22
 require('../../pages/difficult/difficult?hash=6afb217eadccd1c4e8bfda0d0b7fb88324ecf08f');
 require('../../pages/community/community?hash=8803d242f0d662db19e3cfa0fb6bfe90ae8170bb');
 require('../../pages/handle/suspend/suspend?hash=32d7d2807ed4e666ef03b4b3fe8c38ecf2e34e68');
+require('../../pages/kpi/kpi?hash=6afb217eadccd1c4e8bfda0d0b7fb88324ecf08f');

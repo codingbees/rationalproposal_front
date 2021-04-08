@@ -37,7 +37,7 @@ Page({
                 this.setData({ listToBeChecked: resp.data.arraytoBeChecked });
               },
               fail: function (res) {
-                dd.alert({ content: 'check/getCheckList发起失败，未知原因，请联系管理员' });
+                dd.alert({ content: '获取数据失败，未知原因，请联系管理员' });
               }
             });
       },
@@ -45,11 +45,17 @@ Page({
         dd.alert({content:res.errorMessage})
       }
     });
+    dd.getStorage({
+      key:'leanManagerList',
+      success:res=>{
+        console.log('get leanManagerList')
+        console.log(res.data)
+      }
+    })
     
   },
   onItemClick(ev) {
-    console.log("ev is:")
-    console.log(ev);
+    
     dd.navigateTo({
       url: '/pages/check/toBeChecked/toBeChecked?no='+ev.currentTarget.dataset.rpno
     })

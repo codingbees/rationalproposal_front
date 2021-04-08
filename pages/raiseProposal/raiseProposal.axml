@@ -44,7 +44,7 @@
           <input type="file" multiple="multiple" name="picture_of_problem" class="input" disabled="true" value="已选择：{{fileqty}}张" />
        </view>
         </view>
-        <view a:for="{{picNames}}">1231
+        <view a:for="{{picNames}}">
           <!-- <image mode="scaleToFill" src="http://192.168.18.126:18080/prize_pictures/1.jpg" class="pics"/>
            <image mode="scaleToFill" src="http://192.168.18.126:18080/prize_pictures/2.jpg" class="pics"/>
            <image mode="scaleToFill" src="http://192.168.18.126:18080/prize_pictures/3.jpg" class="pics"/>

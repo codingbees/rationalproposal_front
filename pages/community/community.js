@@ -23,28 +23,64 @@ Page({
     partname: '',
     username: '',
     userjobnumber: '',
-    test: null
+    test: null,
+    pageSize: 5,
+    pageNum: 1,
+    isNoData: false
+
   },
   handlerChange(e) {
     this.setData({
       indexHandler: e.detail.value,
     });
   },
-  onLoad(query) {
+  getLatestList() {
+    // console.log('reach bottom')
+    if (this.data.isNoData) {
+      dd.showToast({
+        title: '已经到底了~'
+      })
+      return
+    }
+    let num = this.data.pageNum + 1
+    this.setData({
+      pageNum: num
+    })
+    this.getList()
+  },
+  getList() {
+    dd.showLoading({
+      content: '加载中...',
+    });
     dd.httpRequest({
       url: app.globalData.serverUrl + '/check/getCommunityDataList',
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
       dataType: 'json',
+      data: { pageSize: this.data.pageSize, pageNum: this.data.pageNum },
       success: res => {
-        console.log('res from getCommunityDataList')
-        console.log(res)
-        this.setData({ CommunityDataList: res.data.CommunityDataList });
+        // console.log('res from getCommunityDataList')
+        // console.log(res)
+        if (res.data.CommunityDataList < this.data.pageSize) {
+          this.setData({
+            isNoData: true
+          })
+        }
+        let [...list] = this.data.CommunityDataList
+        list = list.concat(res.data.CommunityDataList)
+        this.setData({ CommunityDataList: list });
+
       },
       fail: function (res) {
-        dd.alert({ content: '发起失败，未知原因，请联系管理员' });
+        dd.alert({  content: res.errorMessage });
+      },
+      complete: () => {
+        dd.hideLoading()
       }
     });
+  },
+  onLoad() {
+    this.getList()
     dd.getStorage({
       key: 'userInfo',
       success: (res) => {
@@ -60,11 +96,12 @@ Page({
     });
   },
   showProblemPic(e) {
-    console.log(e)
+    // console.log(e)
     if (e.currentTarget.dataset.pic == null) {
       dd.showToast({
-        type: 'fail',
-        content: '此处暂无图片'
+        type: 'none',
+        content: '此处暂无图片',
+        duration: 1000
       })
       return
     }
@@ -140,7 +177,7 @@ Page({
       data: { likeuserid: this.data.userjobnumber, rpno: rpno },
       dataType: 'json',
       success: res => {
-        console.log(res)
+        // console.log(res)
       },
       fail: function (res) {
         dd.alert({ content: '点赞失败，未知原因，请联系管理员' });
@@ -151,8 +188,8 @@ Page({
     this.setData({
       commentArr: [],
     })
-    console.log('e in comment')
-    console.log(e)
+    // console.log('e in comment')
+    // console.log(e)
     let rpno = e.currentTarget.dataset.rpno
     let newconment = e.currentTarget.dataset.im.newcontent
     if (this.data.showrCommentRpno == rpno) {
@@ -191,8 +228,8 @@ Page({
     });
   },
   previewImage(e) {
-    console.log("e in preview is ")
-    console.log(e.currentTarget.dataset.img)
+    // console.log("e in preview is ")
+    // console.log(e.currentTarget.dataset.img)
     my.previewImage({
       current: 2,
       urls: [
@@ -201,8 +238,8 @@ Page({
     });
   },
   onSubmit: function (e) {
-    console.log('e in submit is')
-    console.log(e)
+    // console.log('e in submit is')
+    // console.log(e)
     var formdata = e.detail.value;
     if (formdata.haveconments == null) {
       this.setData({
@@ -227,8 +264,8 @@ Page({
       },
       dataType: 'json',
       success: function (res) {
-        console.log("res in success")
-        console.log(res)
+        // console.log("res in success")
+        // console.log(res)
 
         let newcomment = _this.data.CommunityDataList.map(item => {
           if (item.rp_no === rpno) {
@@ -284,15 +321,15 @@ Page({
   },
   toDeleteComment(e) {
     let _this = this
-    console.log('e in toDeleteComment is')
-    console.log(e)
+    // console.log('e in toDeleteComment is')
+    // console.log(e)
     dd.confirm({
       title: '请确认',
       content: '您确定要删除' + "\"" + e.currentTarget.dataset.content + "\"" + '这条评论吗？',
       confirmButtonText: '确定删除',
       cancelButtonText: '不了',
       success: (result) => {
-        console.log('result is:',result)
+        // console.log('result is:',result)
         if (result.confirm) {
           dd.httpRequest({
             url: app.globalData.serverUrl + '/check/deleteComment',
@@ -301,9 +338,7 @@ Page({
             data: { id: e.currentTarget.dataset.id },
             dataType: 'json',
             success: res => {
-              console.log('deleteComment success')
-              console.log(e.currentTarget.dataset.id)
-              console.log(e.currentTarget.dataset.rpnum)
+
               let id = e.currentTarget.dataset.id.toString()
               let newcomment = _this.data.CommunityDataList.map(item => {
                 if (item.rp_no === e.currentTarget.dataset.rpnum) {
@@ -319,14 +354,14 @@ Page({
                       ...item,
                       sumcomment: item.sumcomment - 1,
                       isComment: 1,
-                      newcontent: item.newcontent.replace(e.currentTarget.dataset.id + "$^$" + _this.data.userjobnumber + "$^$" + _this.data.username + "$^$" + e.currentTarget.dataset.cont + "*&^,",'')
+                      newcontent: item.newcontent.replace(e.currentTarget.dataset.id + "$^$" + _this.data.userjobnumber + "$^$" + _this.data.username + "$^$" + e.currentTarget.dataset.cont + "*&^,", '')
                     }
                   } else {
                     return {
                       ...item,
                       sumcomment: item.sumcomment - 1,
                       isComment: 1,
-                      newcontent: item.newcontent.replace("," + e.currentTarget.dataset.id + "$^$" + _this.data.userjobnumber + "$^$" + _this.data.username + "$^$" + e.currentTarget.dataset.cont + "*&^",'')
+                      newcontent: item.newcontent.replace("," + e.currentTarget.dataset.id + "$^$" + _this.data.userjobnumber + "$^$" + _this.data.username + "$^$" + e.currentTarget.dataset.cont + "*&^", '')
                     }
                   }
                 }

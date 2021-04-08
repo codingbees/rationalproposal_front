@@ -4,8 +4,10 @@
       点击筛选
     </button>
   </view> -->
-  <scroll-view style="height: 100vh; " 
-		scroll-y onScrollToLower="onScrollToLower" enable-back-to-top="true">
+  <scroll-view style="height: 100vh; " scroll-y onScrollToLower="getLatestList" enable-back-to-top="true">
+    <!-- <view> -->
+      
+    
     <block a:for="{{CommunityDataList}}">
       <view class="area">
         <view class="usertitle">
@@ -78,5 +80,6 @@
         </view>
       </view>
     </block>
+    <!-- </view> -->
   </scroll-view>
 </view>

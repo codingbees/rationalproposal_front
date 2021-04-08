@@ -52,9 +52,9 @@ Page({
         dd.alert({ content: res.errorMessage })
       }
     });
-    dd.setNavigationBar({
-      title: '处理建议'
-    });
+    // dd.setNavigationBar({
+    //   title: '处理建议'
+    // });
   },
   selectDate() {
     dd.datePicker({
@@ -123,10 +123,11 @@ Page({
     });
   },
   onSubmit: function (e) {
-    e.detail.value.picture_after_improve = this.data.filename;
-    e.detail.value.id = this.data.getCheckItem.id;
-    
     var formdata = e.detail.value;
+    formdata.picture_after_improve = this.data.filename;
+    formdata.id = this.data.getCheckItem.id;
+    
+    
     if(formdata.handler_username==null||"" == formdata.handler_username ||formdata.handler_userid==null||"" == formdata.handler_userid){
           dd.showToast({ content: '请填写处理人信息！' })
           return false
@@ -135,19 +136,19 @@ Page({
       dd.showToast({ content: '请填写改善完成情况描述！' })
       return false;
     }
-    if (e.detail.value.is_difficult_aft_ck) {
-      e.detail.value.is_difficult_aft_ck = 1
-    } else { e.detail.value.is_difficult_aft_ck = 0 }
+    if (formdata.is_difficult_aft_ck) {
+      formdata.is_difficult_aft_ck = 1
+    } else { formdata.is_difficult_aft_ck = 0 }
     
-    if (e.detail.value.is_excellent_aft_ck) {
-      e.detail.value.is_excellent_aft_ck = 1
-    } else { e.detail.value.is_excellent_aft_ck = 0 }
+    if (formdata.is_excellent_aft_ck) {
+      formdata.is_excellent_aft_ck = 1
+    } else { formdata.is_excellent_aft_ck = 0 }
 
     dd.httpRequest({
       url: app.globalData.serverUrl + '/check/submitDoubleAudit?rp_no=' + this.data.no,
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-      data: e.detail.value,
+      data: formdata,
       dataType: 'json',
       success: function (res) {
         dd.showToast({
@@ -166,7 +167,7 @@ Page({
         })
       }
     });
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    console.log('form发生了submit事件，携带数据为：', formdata)
   },
 
 });

@@ -30,7 +30,8 @@ Page({
           headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
           dataType: 'json',
           success: resp => {
-
+            console.log('getDoubleAuditList')
+            console.log(resp)
             if (resp.data.DoubleAuditList.length == 0) {
               
               this.setData({ getHandleListIsEmpty: true });
@@ -38,7 +39,7 @@ Page({
               
               this.setData({ getHandleListIsEmpty: false });
             }
-            this.setData({ managerid: resp.data.userlist });
+            this.setData({ managerid: resp.data.leanManagerList });
             this.setData({ listToBeChecked: resp.data.DoubleAuditList });
           },
           fail: function (resp) {
@@ -61,7 +62,7 @@ Page({
       if (managerids.hasOwnProperty(key)) {
         const element = managerids[key];
         
-        if(this.data.userid == element.ding_user_id){
+        if(this.data.userid == element.job_number){
           checkRight = true
         }
       }
@@ -75,6 +76,7 @@ Page({
       })
       return
     }
+    // console.log('是精益管理员')
     dd.navigateTo({
       url: '/pages/doubleAudit/toBeDoubleAudit/toBeDoubleAudit?no=' + ev.currentTarget.dataset.rpno
     })

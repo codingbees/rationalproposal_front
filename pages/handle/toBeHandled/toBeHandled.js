@@ -134,6 +134,7 @@ Page({
   },
   
   onSubmit: function(e) {
+    console.log(e)
     e.detail.value.picture_after_improve = this.data.filename;
      var formdata = e.detail.value;
     if(formdata.description_after_improve == null || "" == formdata.description_after_improve){

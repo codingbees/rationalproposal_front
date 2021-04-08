@@ -30,14 +30,15 @@ Page({
       { text: '确定', extClass: 'buttonBold' },
     ],
     picNames:[],
+    isShiftLeader:false,
     imgspath:'../../../../D:\\apache-tomcat-8.0.26\\webapps\\rationalproposal\\'
   },
   onLoad() {
     dd.getStorage({
       key: 'userInfo',
       success: (res) => {
-        console.log("userInfo is")
-        console.log(res)
+        // console.log("userInfo is")
+        // console.log(res)
         this.setData({ userid: res.data.jobnumber });
         this.setData({ partid: res.data.department });
         this.setData({ username: res.data.name });
@@ -46,16 +47,20 @@ Page({
         dd.httpRequest({
           url: app.globalData.serverUrl + '/getAuditor',
           method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
           data: { userid: this.data.userid },
           dataType: 'json',
           success: res => {
-            
-            console.log("res in getAuditor")
+            console.log('res from getAuditor')
             console.log(res)
-            this.setData({ arrayCheck: res.data.arrayAuditor });
-            console.log("res in arrayAuditorJobNo")
-            console.log(res.data.arrayAuditorJobNo)
-            this.setData({ arrayAuditorJobNo: res.data.arrayAuditorJobNo });
+            if(res.data.isShiftLeader){
+              this.setData({ isShiftLeader: res.data.isShiftLeader });
+              this.setData({ arrayCheck: res.data.managerName });
+              this.setData({ arrayAuditorJobNo: res.data.managerId });
+            }else{
+              this.setData({ arrayCheck: res.data.arrayAuditor });
+              this.setData({ arrayAuditorJobNo: res.data.arrayAuditorJobNo });
+            }
           },
           fail: function (res) {
             dd.alert({ content: '获取改善类型失败，请联系管理员' });
@@ -72,7 +77,7 @@ Page({
       headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
       dataType: 'json',
       success: res => {
-        console.log(res)
+        // console.log(res)
         this.setData({ arrayDep: res.data.arrayDep });
       },
       fail: function (res) {
@@ -85,8 +90,10 @@ Page({
       headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
       dataType: 'json',
       success: res => {
-        console.log(res)
-        this.setData({ array: res.data.array });
+        // console.log(res)
+        this.setData({ array: res.data.array, });
+        console.log('this.data.array from getworkshop')
+    console.log(this.data.array)
       },
       fail: function (res) {
         dd.alert({ content: '获取车间部信息失败，请联系管理员' });
@@ -99,7 +106,7 @@ Page({
       headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
       dataType: 'json',
       success: res => {
-        console.log(res)
+        // console.log(res)
         this.setData({ arrayLine: res.data.arrayLine });
       },
       fail: function (res) {
@@ -119,10 +126,11 @@ Page({
         dd.alert({ content: '获取改善类型失败，请联系管理员' });
       }
     });
-
+    
     dd.setNavigationBar({
       title: '发起建议'
     });
+    
   },
 
   selectFile() {
@@ -142,7 +150,7 @@ Page({
             fileName: 'file',
             filePath: paths[i],
             success: res => {
-            console.log(res)
+            // console.log(res)
               let resp = JSON.parse(res.data);
               _this.setData({
 
@@ -214,6 +222,10 @@ Page({
   },
   depChange(e) {
     let _this = this;
+    if (!this.data.isShiftLeader) {
+      console.log("_this.data.isShiftLeader,depchange")
+        console.log(this.data.isShiftLeader)
+    }
     this.setData({
       indexDep: e.detail.value,
     });
@@ -227,9 +239,9 @@ Page({
         
         _this.setData({ array: res.data.array });
         _this.setData({ arrayLine: res.data.arrayLine });
-        console.log(_this.data.arrayAuditorJobNo[0])
-        console.log(res.data.leanUserlist[0])
-        if (_this.data.arrayAuditorJobNo[0] != res.data.leanUserlist[0].ding_user_id) {
+        
+        if (!_this.data.isShiftLeader) {
+          
           //onload时已定义若发起人是班长则审核人为精益管理员。此处若审核人为精益管理员，则不改审核人
           _this.setData({ arrayCheck: res.data.arrayAuditor });
           _this.setData({ arrayAuditorJobNo: res.data.arrayAuditorJobNo });
@@ -253,12 +265,14 @@ Page({
       dataType: 'json',
       success: function (res) {
         console.log("res from getline")
-        console.log(res)
+        console.log(res.data.arrayAuditorJobNo)
+        console.log("_this.data.arrayAuditorJobNo")
+        console.log(_this.data.arrayAuditorJobNo)
         _this.setData({ arrayLine: res.data.arrayLine });
-        console.log(_this.data.arrayAuditorJobNo[0])
-        console.log(res.data.leanUserlist[0])
-        if (_this.data.arrayAuditorJobNo[0] != res.data.leanUserlist[0].ding_user_id) {
-          //onload时已定义若发起人是班长则审核人为何雯。此处若审核人为何雯，则不改审核人
+        
+        if (!_this.data.isShiftLeader) {
+          console.log("不是班长")
+          //onload时已定义若发起人是班长则审核人为。此处若审核人为，则不改审核人
           _this.setData({ arrayCheck: res.data.arrayAuditor });
           _this.setData({ arrayAuditorJobNo: res.data.arrayAuditorJobNo });
         }

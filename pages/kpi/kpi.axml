@@ -1,0 +1,88 @@
+<view class="page">
+  <view class="page-section-title">
+    <view class="top-title">
+      <text class="toptext">{{checkYear}}</text>
+      年
+      <text class="toptext">{{checkMonth}}</text>
+      月各车间合理化建议KPI
+    </view>
+    <view class="kpi-top">
+       <view class="kpi">
+        KPI目标：
+        <view>
+          
+        人均<text class="kpi_target">{{average_target}}</text>
+        ，审核率<text class="kpi_target">{{check_rate_target}}%</text>
+        ，年关闭率<text class="kpi_target">{{yearly_close_rate_target}}%</text>
+        
+        </view>
+      </view> 
+      <button class="page-body-button " type="ghost" onTap="datePicker">选择月份</button>
+    </view>
+  </view>
+  <view class="page-content">
+    <scroll-view scroll-x="true"  scroll-into-view="{{toView}}" >
+      <view class="tr bg-w " id="section">
+        <view class="th4" >事业部/车间</view>
+        <view class="th">人数</view>
+        <view class="th">当月提交</view>
+        <view class="th">当月采纳</view>
+        <!-- <view class="th" onTap="sortByRank">排名</view> -->
+        <view class="th3">年累计已关闭</view>
+        <view class="th3">年累计未关闭</view>
+        <view class="th">人均</view>
+        <view class="th">审核率</view>
+        <view class="th">年关闭率</view>
+      </view>
+      <view a:for="{{monthyList}}" a:for-item="i" class="tab-row">
+        <view  class="{{index % 2 == 0?'tr bg-g':'tr'}}">
+          <view class="td4">{{i.productionLine}}</view>
+          <view class="td">{{i.staff_qty}}</view>
+          <!-- <view class="{{i.closeRateNum<kpi_target ?'yellow td1':'td1'}}">{{i.closeRate}}</view> -->
+          <view class="td">{{i.month_total}}</view>
+          <view class="td">{{i.month_accept}}</view>
+          <view class="td3">{{i.month_closed}}</view>
+          <view class="td3">{{i.month_unclosed}}</view>
+          <view class="{{i.average>=average_target?'td':'td redcontent'}}">{{i.average}}</view>
+          <view class="{{i.check_rate>=check_rate_target?'td':'td redcontent'}}">{{i.check_rate}}%</view>
+          <view class="{{i.close_rate>=yearly_close_rate_target?'td':'td redcontent'}}">{{i.close_rate}}%</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  
+
+  <!-- 年度数据区域 -->
+   <view class="top-title2">
+      <text class="toptext">{{checkYear}}</text>
+      年度各车间合理化建议KPI
+    </view>
+   <view class="page-content">
+    <scroll-view scroll-x="true"  scroll-into-view="{{toView}}" >
+      <view class="tr bg-w ">
+        <view class="th4" id="section">事业部/车间</view>
+        <view class="th">累计人数</view>
+        <view class="th">年度提交</view>
+        <view class="th">年度采纳</view>
+        <view class="th3">年累计已关闭</view>
+        <view class="th3">年累计未关闭</view>
+        <view class="th">人均</view>
+        <view class="th">审核率</view>
+        <view class="th">年关闭率</view>
+      </view>
+      <view a:for="{{yearlyList}}" a:for-item="i" class="tab-row">
+        <view  class="{{index % 2 == 0?'tr bg-g':'tr'}}">
+          <view class="td4">{{i.productionLine}}</view>
+          <view class="td">{{i.year_total_staff_qty}}</view>
+          <view class="td">{{i.year_total}}</view>
+          <view class="td">{{i.year_total_accept}}</view>
+          <view class="td3">{{i.year_total_closed}}</view>
+          <view class="td3">{{i.year_total_accept-i.year_total_closed}}</view>
+          <view class="{{i.average>=average_target?'td':'td redcontent'}}">{{i.average}}</view>
+          <view class="{{i.check_rate>=check_rate_target?'td':'td redcontent'}}">{{i.check_rate}}%</view>
+          <view class="{{i.close_rate>=yearly_close_rate_target?'td':'td redcontent'}}">{{i.close_rate}}%</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
